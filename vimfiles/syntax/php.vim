@@ -568,7 +568,7 @@ syn case ignore
   syn cluster phpClValues add=phpComment
   syn cluster phpClInClass add=phpComment
 
-  syn region phpComment start="/\*" end="\*/" contained extend contains=@Spell
+  syn region phpComment start="/\*" end="\*/" contained extend contains=@Spell fold
   if version >= 600
     syn match phpComment "#.\{-}\(?>\|$\)\@="  contained extend contains=@Spell
     syn match phpComment "//.\{-}\(?>\|$\)\@=" contained extend contains=@Spell

@@ -2,8 +2,8 @@
 " MAIN CUSTOMIZATION FILE
 "
 
-colorscheme slate
-cd z:\tmower\
+colorscheme desert
+cd z:\exemplar
 " Enable loading filetype and indentation plugins
 filetype plugin on
 filetype indent on
@@ -83,7 +83,7 @@ set updatecount=50
 " :20  - remember 20 items in command-line history 
 " %    - remember the buffer list (if vim started without a file arg)
 " n    - set name of viminfo file
-set viminfo='20,\"50,:20,%,n~/.viminfo
+set viminfo='20,\"50,:20,%20,n~/.viminfo
 
 " Use menu to show command-line completion (in 'full' case)
 set wildmenu
@@ -154,18 +154,6 @@ vnoremap . .gv
 "highlight treeCWD cterm=none ctermfg=DarkYellow
 "highlight netrwDir cterm=none ctermfg=Cyan
 
-" Set up cscope options
-if has("cscope")
-	set csprg=/usr/bin/cscope
-	set csto=0
-	set cst
-	set nocsverb
-	cs add cscope.out
-	set csverb
-	map <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
-	map g<C-]> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
-	map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
-endif
 
 
 "
@@ -176,22 +164,21 @@ endif
 " let NERDTreeWinSize=35
 
 " map <F7> to toggle NERDTree window
-nmap <silent> <F7> :NERDTreeToggle Z:\tmower\exemplar<CR>
+nmap <silent> <F7> :NERDTreeToggle Z:\exemplar<CR>
 nmap <F10> :let php_folding = 1<CR>:e<CR>
 nmap <F11> :let php_folding = 0<CR>:e<CR>
 au GUIEnter * simalt ~x
-set noeol bin
 set ff=unix
 set smartcase
 set ignorecase
 set smartindent
 set gfn=Consolas:h10:cANSI
-set tags=Z:\tmower\exemplar\tags,Z:\tmower\sf_tags
+set tags=tags,Z:\sf_tags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 let g:netrw_cygwin=0
 let g:netrw_scp_cmd='"c:\Program Files\PuTTY\pscp.exe" -q -batch'
 let g:netrw_sftp_cmd='"c:\Program Files\PuTTY\psftp.exe"'
-set makeprg=c:\php\php.exe\ -l\ %
+set makeprg=\"c:\\Program\ Files\\phpDesigner\\PHP\\php.exe\"\ \-l\ %
 set errorformat=%m\ in\ %f\ on\ line\ %l
 
 " Turn off useless toolbar
@@ -212,5 +199,19 @@ au BufRead *.yml set foldmethod=indent
 " Dialog box on closing and edited buffer
 set confirm
 set foldcolumn=2
-set shellpipe=>\ %s\ 2>&1 
-set grepprg=\"c:\Program\ Files\gnuwin32\bin\grep.exe\"
+"nmap dvd odie(var_dump());hhi
+"die var_dump a variable - prob a better way to get the variable
+nmap dvd viwyodie(var_dump());hhP
+set bg=light
+set bg=dark
+set complete -=t,i
+set statusline=%<%F\ %y[%{&ff}]\ %m%r%w%a\ %=%l/%L,%c%V\ %P\ %#IncSearch#%{getcwd()}
+
+nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
+set lcs=eol:$,trail:-
+vmap dv "zyodie(var_dump(<C-R>z));<CR><ESC>
+set hlsearch
+set hl+=l:IncSearch
+nmap <F8> :set hls!<bar>set hls?<CR>
+nmap `n :tabn<CR>
+nmap `p :tabp<CR>
