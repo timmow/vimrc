@@ -2,14 +2,24 @@
 " MAIN CUSTOMIZATION FILE
 "
 
-colorscheme desert
-cd z:\exemplar
+syntax on
+if has('unix') 
+	set t_Co=256
+	colorscheme desert256
+endif
+
+if has ('gui')
+	colorscheme desert
+endif
+
+if has('win32')
+	cd z:\exemplar
+endif
 " Enable loading filetype and indentation plugins
 filetype plugin on
 filetype indent on
 
 " Turn syntax highlighting on
-syntax on
 
 "
 " GLOBAL SETTINGS
@@ -191,7 +201,7 @@ set guioptions-=r
 nmap <C-F11> :if &guioptions=~'m' \| set guioptions-=m \| else \| set guioptions+=m \| endif<cr>
 " CTRL+F7 to toggle the right-hand scroll bar
 nmap <C-F7> :if &guioptions=~'r' \| set guioptions-=r \| else \| set guioptions+=r \| endif<cr>
-source ~/vimfiles/php-doc.vim
+" source ~/vimfiles/php-doc.vim
 " inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-P> :call PhpDocSingle()<CR>
 vnoremap <C-P> :call PhpDocRange()<CR> 
