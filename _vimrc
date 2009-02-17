@@ -5,11 +5,11 @@
 syntax on
 if has('unix') 
 	set t_Co=256
-	colorscheme desert256
+	colorscheme railscasts
 endif
 
 if has ('gui')
-	colorscheme desert
+	colorscheme railscasts
 endif
 
 if has('win32')
