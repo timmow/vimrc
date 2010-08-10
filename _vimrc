@@ -14,6 +14,7 @@ endif
 
 if has('win32')
 	cd z:\exemplar
+	au GUIEnter * simalt ~x
 endif
 " Enable loading filetype and indentation plugins
 filetype plugin on
@@ -177,7 +178,6 @@ vnoremap . .gv
 nmap <silent> <F7> :NERDTreeToggle Z:\exemplar<CR>
 nmap <F10> :let php_folding = 1<CR>:e<CR>
 nmap <F11> :let php_folding = 0<CR>:e<CR>
-au GUIEnter * simalt ~x
 set ff=unix
 set smartcase
 set ignorecase
