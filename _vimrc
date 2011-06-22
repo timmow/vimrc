@@ -182,7 +182,7 @@ set ff=unix
 set smartcase
 set ignorecase
 set smartindent
-set gfn=Consolas:h10:cANSI
+set gfn=Inconsolata:h14
 set tags=tags,Z:\sf_tags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 let g:netrw_cygwin=0
