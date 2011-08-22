@@ -212,8 +212,6 @@ set foldcolumn=2
 "nmap dvd odie(var_dump());hhi
 "die var_dump a variable - prob a better way to get the variable
 nmap dvd viwyodie(var_dump());hhP
-set bg=light
-set bg=dark
 set complete -=t,i
 set statusline=%<%F\ %y[%{&ff}]\ %m%r%w%a\ %=%l/%L,%c%V\ %P\ %#IncSearch#%{getcwd()}
 
