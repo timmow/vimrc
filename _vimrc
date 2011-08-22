@@ -1,15 +1,20 @@
 "
 " MAIN CUSTOMIZATION FILE
 "
+source ~/.vim/bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
 
-syntax on
+
+syntax enable
+set background=dark
+colorscheme solarized
 if has('unix') 
-	set t_Co=256
-	colorscheme railscasts
+	"set t_Co=256
+	"colorscheme railscasts
 endif
 
 if has ('gui')
-	colorscheme railscasts
+	" colorscheme railscasts
 endif
 
 if has('win32')
