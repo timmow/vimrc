@@ -1,0 +1,5 @@
+# My Vimrc
+
+This is the current vimrc I use for work and home. I have accumulated
+various different tips and tricks over 4+ years working with vim, and
+want an easy way to setup my environment.

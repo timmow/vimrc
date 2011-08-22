@@ -14,6 +14,7 @@ endif
 
 if has('win32')
 	cd z:\exemplar
+	au GUIEnter * simalt ~x
 endif
 " Enable loading filetype and indentation plugins
 filetype plugin on
@@ -177,12 +178,11 @@ vnoremap . .gv
 nmap <silent> <F7> :NERDTreeToggle Z:\exemplar<CR>
 nmap <F10> :let php_folding = 1<CR>:e<CR>
 nmap <F11> :let php_folding = 0<CR>:e<CR>
-au GUIEnter * simalt ~x
 set ff=unix
 set smartcase
 set ignorecase
 set smartindent
-set gfn=Consolas:h10:cANSI
+set gfn=Inconsolata:h14
 set tags=tags,Z:\sf_tags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 let g:netrw_cygwin=0
