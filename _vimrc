@@ -146,7 +146,7 @@ imap <C-L> @@@<ESC>hhkywjl?@@@<CR>P/@@@<CR>3s
 " jump to
 nmap ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " use <F6> to toggle line numbers
-nmap <silent> <F6> :set number!<CR>
+nmap <silent> <C-l> :set number!<CR>
 " page down with <Space>
 nmap <Space> <PageDown>
 " open filename under cursor in a new window (use current file's working
