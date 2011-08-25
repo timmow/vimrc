@@ -234,3 +234,6 @@ nmap `p :tabp<CR>
 " with / 
 nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
 nmap <silent> <C-u> :let  @* = expand('%:p:.:gs?\?/?')<CR>
+
+" Dont clutter up system with swp files
+set directory=~/tmp
