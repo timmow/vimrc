@@ -228,3 +228,9 @@ set hl+=l:IncSearch
 nmap <F8> :set hls!<bar>set hls?<CR>
 nmap `n :tabn<CR>
 nmap `p :tabp<CR>
+
+" Mappings for filename to clipboard. Filename is relative to current dir,
+" useful for switching to CLI. On a windows system, ctrl-u will replace the \
+" with / 
+nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
+nmap <silent> <C-u> :let  @* = expand('%:p:.:gs?\?/?')<CR>
