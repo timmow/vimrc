@@ -7,6 +7,12 @@ call pathogen#infect()
 
 syntax enable
 set background=dark
+
+if hostname() == 'Tim-Mowers-iMac.local'
+	set t_Co=256
+	let g:solarized_termcolors=256
+endif
+
 colorscheme solarized
 if has('unix') 
 	"set t_Co=256
