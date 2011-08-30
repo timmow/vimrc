@@ -234,3 +234,7 @@ set hl+=l:IncSearch
 nmap <F8> :set hls!<bar>set hls?<CR>
 nmap `n :tabn<CR>
 nmap `p :tabp<CR>
+
+" Command will cd to the same file in a directory above the current.  Useful
+" for comparing release branch to trunk when in separate checkouts
+command -nargs=1 Eother exec 'edit '. '../' . substitute(expand('%:p'), getcwd(), <q-args>, '')
