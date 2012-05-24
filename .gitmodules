@@ -7,3 +7,9 @@
 [submodule "linked_packages/sparkup"]
 	path = linked_packages/sparkup
 	url = https://github.com/rstacruz/sparkup
+[submodule "vimfiles/bundle/ack"]
+	path = vimfiles/bundle/ack
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "vimfiles/bundle/gnupg"]
+	path = vimfiles/bundle/gnupg
+	url = https://git.gitorious.org/vim-gnupg/vim-gnupg.git

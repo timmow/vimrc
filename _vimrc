@@ -237,3 +237,11 @@ nmap <silent> <C-u> :let  @* = expand('%:p:.:gs?\?/?')<CR>
 
 " Dont clutter up system with swp files
 set directory=~/tmp
+iab <expr> dts strftime("%c")
+
+if has("gui_macvim")
+	set fuopt+=maxhorz
+endif
+
+" sparkup mapping conflicts with vim completion in php
+let g:sparkupNextMapping='<c-}>'
