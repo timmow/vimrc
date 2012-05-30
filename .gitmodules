@@ -13,3 +13,6 @@
 [submodule "vimfiles/bundle/gnupg"]
 	path = vimfiles/bundle/gnupg
 	url = https://git.gitorious.org/vim-gnupg/vim-gnupg.git
+[submodule "vimfiles/bundle/surround"]
+	path = vimfiles/bundle/surround
+	url = https://github.com/tpope/vim-surround

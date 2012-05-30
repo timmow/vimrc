@@ -7,6 +7,12 @@ call pathogen#infect()
 
 syntax enable
 set background=dark
+
+if hostname() == 'Tim-Mowers-iMac.local'
+	set t_Co=256
+	let g:solarized_termcolors=256
+endif
+
 colorscheme solarized
 if has('unix') 
 	"set t_Co=256
@@ -245,3 +251,6 @@ endif
 
 " sparkup mapping conflicts with vim completion in php
 let g:sparkupNextMapping='<c-}>'
+" Command will cd to the same file in a directory above the current.  Useful
+" for comparing release branch to trunk when in separate checkouts
+command -nargs=1 Eother exec 'edit '. '../' . substitute(expand('%:p'), getcwd(), <q-args>, '')
