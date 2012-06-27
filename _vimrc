@@ -2,6 +2,11 @@
 " MAIN CUSTOMIZATION FILE
 "
 source ~/.vim/bundle/pathogen/autoload/pathogen.vim
+
+let g:pathogen_disabled = []
+if v:version < '702' 
+	call add(g:pathogen_disabled, 'gnupg') 
+endif 
 call pathogen#infect()
 
 
