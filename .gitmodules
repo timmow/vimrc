@@ -19,3 +19,6 @@
 [submodule "vimfiles/bundle/puppet"]
 	path = vimfiles/bundle/puppet
 	url = https://github.com/rodjek/vim-puppet.git
+[submodule "vimfiles/bundle/Command-T"]
+	path = vimfiles/bundle/Command-T
+	url = https://github.com/wincent/Command-T
