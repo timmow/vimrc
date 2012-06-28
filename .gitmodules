@@ -16,3 +16,6 @@
 [submodule "vimfiles/bundle/surround"]
 	path = vimfiles/bundle/surround
 	url = https://github.com/tpope/vim-surround
+[submodule "vimfiles/bundle/puppet"]
+	path = vimfiles/bundle/puppet
+	url = https://github.com/rodjek/vim-puppet.git
