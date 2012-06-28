@@ -204,9 +204,6 @@ set smartindent
 set gfn=Inconsolata:h14
 set tags=tags,Z:\sf_tags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-let g:netrw_cygwin=0
-let g:netrw_scp_cmd='"c:\Program Files\PuTTY\pscp.exe" -q -batch'
-let g:netrw_sftp_cmd='"c:\Program Files\PuTTY\psftp.exe"'
 set makeprg=\"c:\\Program\ Files\\phpDesigner\\PHP\\php.exe\"\ \-l\ %
 set errorformat=%m\ in\ %f\ on\ line\ %l
 
