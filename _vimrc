@@ -258,7 +258,13 @@ endif
 let g:sparkupNextMapping='<c-}>'
 " Command will cd to the same file in a directory above the current.  Useful
 " for comparing release branch to trunk when in separate checkouts
-command -nargs=1 Eother exec 'edit '. '../' . substitute(expand('%:p'), getcwd(), <q-args>, '')
+"command -nargs=1 Eother exec 'edit '. '../' . substitute(expand('%:p'), getcwd(), <q-args>, '')
 nmap ,r @='^f i -r 45261<C-V><ESC>j'<CR>
 nmap ,e /-d2f j^
 set directory=~/tmp
+ let g:syntastic_mode_map = { 'mode': 'active',
+                               \ 'active_filetypes': ['ruby', 'php', 'puppet'],
+                               \ 'passive_filetypes': [] }
+
+" close the current html tag
+imap ,/ </<C-X><C-O>
