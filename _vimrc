@@ -246,8 +246,11 @@ nmap `p :tabp<CR>
 nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
 nmap <silent> <C-u> :let  @* = expand('%:p:.:gs?\?/?')<CR>
 
-" Dont clutter up system with swp files
-set directory=~/tmp
+" Dont clutter up system with swp files - double slash means same file names
+" under different path do not clash
+silent execute '!mkdir "~/tmp"'
+set directory=~/tmp//
+set backupdir=~/tmp//
 iab <expr> dts strftime("%c")
 
 if has("gui_macvim")
@@ -268,3 +271,4 @@ set directory=~/tmp
 
 " close the current html tag
 imap ,/ </<C-X><C-O>
+
