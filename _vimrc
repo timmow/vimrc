@@ -274,4 +274,4 @@ imap ,/ </<C-X><C-O>
 " dont use the escape key
 inoremap <Esc> <Nop>
 inoremap jj <Esc>
-
+let mapleader=','
