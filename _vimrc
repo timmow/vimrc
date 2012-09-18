@@ -99,9 +99,9 @@ set showmatch
 " Don't request terminal version string (for xterm)
 set t_RV=
 
-" Use 4 spaces for <Tab> and :retab
-set tabstop=2
-set noexpandtab
+" Indent options for various files
+au FileType php setlocal tabstop=2 noexpandtab
+au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
 
 " Write swap file to disk after every 50 characters
 set updatecount=50
