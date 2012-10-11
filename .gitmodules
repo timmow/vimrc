@@ -31,3 +31,6 @@
 [submodule "vimfiles/bundle/vim-ruby"]
 	path = vimfiles/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
+[submodule "vimfiles/bundle/ultisnips"]
+	path = vimfiles/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
