@@ -202,7 +202,7 @@ set ff=unix
 set smartcase
 set ignorecase
 set smartindent
-set gfn=Inconsolata:h14
+set guifont="Source Code Pro:h12"
 set tags=tags,Z:\sf_tags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 set makeprg=\"c:\\Program\ Files\\phpDesigner\\PHP\\php.exe\"\ \-l\ %
@@ -249,7 +249,6 @@ nmap <silent> <C-u> :let  @* = expand('%:p:.:gs?\?/?')<CR>
 
 " Dont clutter up system with swp files - double slash means same file names
 " under different path do not clash
-silent execute '!mkdir "~/tmp"'
 set directory=~/tmp//
 set backupdir=~/tmp//
 iab <expr> dts strftime("%c")
