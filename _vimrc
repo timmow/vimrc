@@ -7,6 +7,7 @@ let g:pathogen_disabled = []
 if v:version < '702' 
 	call add(g:pathogen_disabled, 'gnupg') 
 	call add(g:pathogen_disabled, 'syntastic') 
+	call add(g:pathogen_disabled, 'ultisnips') 
 endif 
 call pathogen#infect()
 
