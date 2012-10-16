@@ -276,3 +276,4 @@ imap ,/ </<C-X><C-O>
 inoremap <Esc> <Nop>
 inoremap jj <Esc>
 let mapleader=','
+let g:syntastic_phpcs_conf='--standard=Zend'
