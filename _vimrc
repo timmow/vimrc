@@ -15,23 +15,10 @@ call pathogen#infect()
 syntax enable
 set background=dark
 
-if hostname() == 'Tims-MacBook-Air.local'
-	set t_Co=256
-	let g:solarized_termcolors=256
-endif
+set t_Co=256
+let g:solarized_termcolors=256
 
 colorscheme solarized
-if has('unix') 
-	"set t_Co=256
-	"colorscheme railscasts
-endif
-
-if has ('gui_running')
-	" colorscheme railscasts
-else
-	colorscheme elflord
-	set term=xterm
-endif
 
 if has('win32')
 	cd z:\exemplar
