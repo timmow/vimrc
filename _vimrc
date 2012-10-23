@@ -264,3 +264,5 @@ inoremap <Esc> <Nop>
 inoremap jj <Esc>
 let mapleader=','
 let g:syntastic_phpcs_conf='--standard=Zend'
+map \cd <Plug>RooterChangeToRootDirectory
+let g:rooter_patterns = ['.git/', '.git', 'puppet.conf']

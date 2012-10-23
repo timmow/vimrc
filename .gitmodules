@@ -34,3 +34,6 @@
 [submodule "vimfiles/bundle/ultisnips"]
 	path = vimfiles/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
+[submodule "vimfiles/bundle/rooter.vim"]
+	path = vimfiles/bundle/rooter.vim
+	url = https://github.com/airblade/vim-rooter.git
