@@ -252,7 +252,6 @@ let g:sparkupNextMapping='<c-}>'
 "command -nargs=1 Eother exec 'edit '. '../' . substitute(expand('%:p'), getcwd(), <q-args>, '')
 nmap ,r @='^f i -r 45261<C-V><ESC>j'<CR>
 nmap ,e /-d2f j^
-set directory=~/tmp
  let g:syntastic_mode_map = { 'mode': 'active',
                                \ 'active_filetypes': ['ruby', 'php', 'puppet'],
                                \ 'passive_filetypes': [] }
