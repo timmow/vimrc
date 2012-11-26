@@ -268,8 +268,6 @@ nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>p :CtrlP<CR>
 let g:ctrlp_working_path_mode = 'a'
 nmap <Leader>s :write<CR>
-
-" ruby version from rbenv
 let g:syntastic_ruby_exec='~/.rbenv/shims/ruby'
 
 " Ultisnips
