@@ -264,3 +264,6 @@ let g:syntastic_phpcs_conf='--standard=Zend'
 map \cd <Plug>RooterChangeToRootDirectory
 let g:rooter_patterns = ['.git/', '.git', 'puppet.conf', '.rooter']
 nmap <Leader>b :CtrlPBuffer<CR>
+nmap <Leader>p :CtrlP<CR>
+let g:ctrlp_working_path_mode = 'a'
+nmap <Leader>s :write<CR>
