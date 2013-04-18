@@ -91,6 +91,7 @@ set t_RV=
 " Indent options for various files
 au FileType php setlocal tabstop=2 noexpandtab
 au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
+" Set a max textwidth for markdown files
 au FileType markdown setlocal textwidth=80
 
 " Write swap file to disk after every 50 characters
