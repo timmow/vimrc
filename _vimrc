@@ -190,7 +190,7 @@ set ff=unix
 set smartcase
 set ignorecase
 set smartindent
-set guifont="Source Code Pro:h12"
+set guifont=Source\ Code\ Pro:h12
 set tags=tags,Z:\sf_tags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 set makeprg=\"c:\\Program\ Files\\phpDesigner\\PHP\\php.exe\"\ \-l\ %
