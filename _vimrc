@@ -231,7 +231,7 @@ nmap `p :tabp<CR>
 " useful for switching to CLI. On a windows system, ctrl-u will replace the \
 " with / 
 nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
-nmap <silent> <C-u> :let  @* = expand('%:p:.:gs?\?/?')<CR>
+nmap <silent> <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
 
 " Dont clutter up system with swp files - double slash means same file names
 " under different path do not clash
