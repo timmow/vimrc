@@ -43,3 +43,6 @@
 [submodule "vimfiles/bundle/tabular"]
 	path = vimfiles/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "vimfiles/bundle/easymotion"]
+	path = vimfiles/bundle/easymotion
+	url = https://github.com/Lokaltog/vim-easymotion.git
