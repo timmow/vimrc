@@ -251,10 +251,10 @@ let g:sparkupNextMapping='<c-}>'
 "command -nargs=1 Eother exec 'edit '. '../' . substitute(expand('%:p'), getcwd(), <q-args>, '')
 nmap ,r @='^f i -r 45261<C-V><ESC>j'<CR>
 nmap ,e /-d2f j^
- let g:syntastic_mode_map = { 'mode': 'active',
+let g:syntastic_mode_map = { 'mode': 'active',
                                \ 'active_filetypes': ['ruby', 'php', 'puppet'],
                                \ 'passive_filetypes': [] }
-
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 " close the current html tag
 imap ,/ </<C-X><C-O>
 " dont use the escape key
@@ -271,3 +271,6 @@ nmap <Leader>s :write<CR>
 
 " ruby version from rbenv
 let g:syntastic_ruby_exec='~/.rbenv/shims/ruby'
+
+" Ultisnips
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnipppets" ]
