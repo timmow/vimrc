@@ -1,18 +1,37 @@
 "
 " MAIN CUSTOMIZATION FILE
 "
-source ~/.vim/bundle/pathogen/autoload/pathogen.vim
+set nocompatible | filetype indent plugin on | syn on
 
-let g:pathogen_disabled = []
-if v:version < '702' 
-	call add(g:pathogen_disabled, 'gnupg') 
-	call add(g:pathogen_disabled, 'syntastic') 
-	call add(g:pathogen_disabled, 'ultisnips') 
-endif 
-call pathogen#infect()
+fun SetupVAM()
+  let c = get(g:, 'vim_addon_manager', {})
+  let g:vim_addon_manager = c
+  let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+  " let g:vim_addon_manager = { your config here see "commented version" example and help
+  if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
+	  \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+  endif
+  call vam#ActivateAddons(['vim-ruby'], {'auto_install' : 0})
+  ActivateAddons sparkup
+  ActivateAddons ack
+  ActivateAddons ctrlp
+  ActivateAddons gnupg%3645
+  ActivateAddons The_NERD_Commenter
+  ActivateAddons github:rodjek/vim-puppet
+  ActivateAddons rooter
+  ActivateAddons surround
+  ActivateAddons Syntastic
+  ActivateAddons UltiSnips
+  ActivateAddons Solarized
+  ActivateAddons EasyMotion
+endfun
+call SetupVAM()
 
-
+set runtimepath+=~/.vim/vim-addon-manager/
 syntax enable
+
 
 set t_Co=256
 let g:solarized_termcolors=256
