@@ -10,7 +10,7 @@ fun SetupVAM()
   let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
   " let g:vim_addon_manager = { your config here see "commented version" example and help
   if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
-    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
+    execute '!git clone --depth=1 https://github.com/MarcWeber/vim-addon-manager '
 	  \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
   endif
   call vam#ActivateAddons(['vim-ruby'], {'auto_install' : 0})
@@ -27,6 +27,12 @@ fun SetupVAM()
   ActivateAddons Solarized
   ActivateAddons EasyMotion
 endfun
+let g:vim_addon_manager = {'scms': {'git': {}}}
+fun! MyGitCheckout(repository, targetDir)
+	let a:repository.url = substitute(a:repository.url, '^git://github', 'https://github', '')
+	return vam#utils#RunShell('git clone --depth=1 $.url $p', a:repository, a:targetDir)
+endfun
+let g:vim_addon_manager.scms.git.clone=['MyGitCheckout']
 call SetupVAM()
 
 set runtimepath+=~/.vim/vim-addon-manager/
