@@ -3,43 +3,48 @@
 "
 set nocompatible | filetype indent plugin on | syn on
 
-fun! SetupVAM()
-  let c = get(g:, 'vim_addon_manager', {})
-  let g:vim_addon_manager = c
-  let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
-  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
-  " let g:vim_addon_manager = { your config here see "commented version" example and help
-  if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
-    execute '!git clone --depth=1 https://github.com/MarcWeber/vim-addon-manager '
-	  \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
-  endif
-  call vam#ActivateAddons(['vim-ruby'], {'auto_install' : 1})
-  ActivateAddons sparkup
-  ActivateAddons ack
-  ActivateAddons ctrlp
-  ActivateAddons gnupg%3645
-  ActivateAddons The_NERD_Commenter
-  ActivateAddons github:rodjek/vim-puppet
-  ActivateAddons rooter
-  ActivateAddons surround
-  ActivateAddons Syntastic
-  ActivateAddons UltiSnips
-  ActivateAddons Solarized
-  ActivateAddons EasyMotion
-  ActivateAddons Tabular
-  ActivateAddons github:kana/vim-vspec
-  ActivateAddons fugitive
-  ActivateAddons github:elzr/vim-json
-endfun
-let g:vim_addon_manager = {'scms': {'git': {}}}
-fun! MyGitCheckout(repository, targetDir)
-	let a:repository.url = substitute(a:repository.url, '^git://github', 'https://github', '')
-	return vam#utils#RunShell('git clone --depth=1 $.url $p', a:repository, a:targetDir)
-endfun
-let g:vim_addon_manager.scms.git.clone=['MyGitCheckout']
-call SetupVAM()
+if v:version > '702' 
+  fun! SetupVAM()
+    let c = get(g:, 'vim_addon_manager', {})
+    let g:vim_addon_manager = c
+    let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+    let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+    " let g:vim_addon_manager = { your config here see "commented version" example and help
+    if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+      execute '!git clone --depth=1 https://github.com/MarcWeber/vim-addon-manager '
+	    \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+    endif
+    call vam#ActivateAddons(['vim-ruby'], {'auto_install' : 0})
+    ActivateAddons sparkup
+    ActivateAddons ack
+    ActivateAddons ctrlp
+    ActivateAddons The_NERD_Commenter
+    ActivateAddons github:rodjek/vim-puppet
+    ActivateAddons rooter
+    ActivateAddons surround
+    ActivateAddons Solarized
+    ActivateAddons EasyMotion
+    ActivateAddons gnupg%3645
+    ActivateAddons Syntastic
+    ActivateAddons Tabular
+    ActivateAddons github:kana/vim-vspec
+    ActivateAddons fugitive
+    ActivateAddons github:elzr/vim-json
+    if has("python")
+      ActivateAddons UltiSnips
+    endif
+  endfun
+  let g:vim_addon_manager = {'scms': {'git': {}}}
+  fun! MyGitCheckout(repository, targetDir)
+    let a:repository.url = substitute(a:repository.url, '^git://github', 'https://github', '')
+    return vam#utils#RunShell('git clone --depth=1 $.url $p', a:repository, a:targetDir)
+  endfun
+  let g:vim_addon_manager.scms.git.clone=['MyGitCheckout']
+  call SetupVAM()
 
-set runtimepath+=~/.vim/vim-addon-manager/
+  set runtimepath+=~/.vim/vim-addon-manager/
+  colorscheme solarized
+endif
 syntax enable
 
 
@@ -47,7 +52,6 @@ set t_Co=256
 let g:solarized_termcolors=256
 
 set background=dark
-colorscheme solarized
 
 if has('win32')
 	cd z:\exemplar
