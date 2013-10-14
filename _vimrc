@@ -3,7 +3,7 @@
 "
 set nocompatible | filetype indent plugin on | syn on
 
-fun SetupVAM()
+fun! SetupVAM()
   let c = get(g:, 'vim_addon_manager', {})
   let g:vim_addon_manager = c
   let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
@@ -13,7 +13,7 @@ fun SetupVAM()
     execute '!git clone --depth=1 https://github.com/MarcWeber/vim-addon-manager '
 	  \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
   endif
-  call vam#ActivateAddons(['vim-ruby'], {'auto_install' : 0})
+  call vam#ActivateAddons(['vim-ruby'], {'auto_install' : 1})
   ActivateAddons sparkup
   ActivateAddons ack
   ActivateAddons ctrlp
@@ -26,6 +26,10 @@ fun SetupVAM()
   ActivateAddons UltiSnips
   ActivateAddons Solarized
   ActivateAddons EasyMotion
+  ActivateAddons Tabular
+  ActivateAddons github:kana/vim-vspec
+  ActivateAddons fugitive
+  ActivateAddons github:elzr/vim-json
 endfun
 let g:vim_addon_manager = {'scms': {'git': {}}}
 fun! MyGitCheckout(repository, targetDir)
@@ -114,7 +118,7 @@ set showmatch
 set t_RV=
 
 " Indent options for various files
-au FileType php setlocal tabstop=2 noexpandtab
+au FileType php setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
 " Set a max textwidth for markdown files
 au FileType markdown setlocal textwidth=80
@@ -258,7 +262,6 @@ nmap `p :tabp<CR>
 " useful for switching to CLI. On a windows system, ctrl-u will replace the \
 " with / 
 nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
-nmap <silent> <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
 
 " Dont clutter up system with swp files - double slash means same file names
 " under different path do not clash
@@ -287,14 +290,21 @@ imap ,/ </<C-X><C-O>
 inoremap <Esc> <Nop>
 inoremap jj <Esc>
 let mapleader=','
-let g:syntastic_phpcs_conf='--standard=Zend'
+nmap <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_php_phpcs_args='--report=csv --standard=PSR2'
 map \cd <Plug>RooterChangeToRootDirectory
 let g:rooter_patterns = ['.git/', '.git', 'puppet.conf', '.rooter']
 nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>p :CtrlP<CR>
 let g:ctrlp_working_path_mode = 'a'
 nmap <Leader>s :write<CR>
+nmap <Leader>e :split ~/questions.txt<CR>ggOdts - 
 let g:syntastic_ruby_exec='~/.rbenv/shims/ruby'
 
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnipppets" ]
+" Fix for incorrect path on osx
+set shell=sh
+" some puppet files not getting highlighted correctly
+au BufRead *.pp set filetype=puppet
