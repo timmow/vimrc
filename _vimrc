@@ -1,24 +1,57 @@
 "
 " MAIN CUSTOMIZATION FILE
 "
-source ~/.vim/bundle/pathogen/autoload/pathogen.vim
+set nocompatible | filetype indent plugin on | syn on
 
-let g:pathogen_disabled = []
-if v:version < '702' 
-	call add(g:pathogen_disabled, 'gnupg') 
-	call add(g:pathogen_disabled, 'syntastic') 
-	call add(g:pathogen_disabled, 'ultisnips') 
-endif 
-call pathogen#infect()
+if v:version > '702' 
+  fun! SetupVAM()
+    let c = get(g:, 'vim_addon_manager', {})
+    let g:vim_addon_manager = c
+    let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+    let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+    " let g:vim_addon_manager = { your config here see "commented version" example and help
+    if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+      execute '!git clone --depth=1 https://github.com/MarcWeber/vim-addon-manager '
+	    \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+    endif
+    call vam#ActivateAddons(['vim-ruby'], {'auto_install' : 0})
+    ActivateAddons sparkup
+    ActivateAddons ack
+    ActivateAddons ctrlp
+    ActivateAddons The_NERD_Commenter
+    ActivateAddons github:rodjek/vim-puppet
+    ActivateAddons rooter
+    ActivateAddons surround
+    ActivateAddons Solarized
+    ActivateAddons EasyMotion
+    ActivateAddons gnupg%3645
+    ActivateAddons Syntastic
+    ActivateAddons Tabular
+    ActivateAddons github:kana/vim-vspec
+    ActivateAddons fugitive
+    ActivateAddons github:elzr/vim-json
+    if has("python")
+      ActivateAddons UltiSnips
+    endif
+  endfun
+  let g:vim_addon_manager = {'scms': {'git': {}}}
+  fun! MyGitCheckout(repository, targetDir)
+    let a:repository.url = substitute(a:repository.url, '^git://github', 'https://github', '')
+    return vam#utils#RunShell('git clone --depth=1 $.url $p', a:repository, a:targetDir)
+  endfun
+  let g:vim_addon_manager.scms.git.clone=['MyGitCheckout']
+  call SetupVAM()
 
-
+  set runtimepath+=~/.vim/vim-addon-manager/
+  colorscheme solarized
+endif
 syntax enable
+
 
 set t_Co=256
 let g:solarized_termcolors=256
 
 set background=dark
-colorscheme solarized
 
 if has('win32')
 	cd z:\exemplar
@@ -89,8 +122,9 @@ set showmatch
 set t_RV=
 
 " Indent options for various files
-au FileType php setlocal tabstop=2 noexpandtab
+au FileType php setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
+" Set a max textwidth for markdown files
 au FileType markdown setlocal textwidth=80
 
 " Write swap file to disk after every 50 characters
@@ -232,7 +266,6 @@ nmap `p :tabp<CR>
 " useful for switching to CLI. On a windows system, ctrl-u will replace the \
 " with / 
 nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
-nmap <silent> <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
 
 " Dont clutter up system with swp files - double slash means same file names
 " under different path do not clash
@@ -261,16 +294,21 @@ imap ,/ </<C-X><C-O>
 inoremap <Esc> <Nop>
 inoremap jj <Esc>
 let mapleader=','
-let g:syntastic_phpcs_conf='--standard=Zend'
+nmap <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_php_phpcs_args='--report=csv --standard=PSR2'
 map \cd <Plug>RooterChangeToRootDirectory
 let g:rooter_patterns = ['.git/', '.git', 'puppet.conf', '.rooter']
 nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>p :CtrlP<CR>
 let g:ctrlp_working_path_mode = 'a'
 nmap <Leader>s :write<CR>
-
-" ruby version from rbenv
+nmap <Leader>e :split ~/questions.txt<CR>ggOdts - 
 let g:syntastic_ruby_exec='~/.rbenv/shims/ruby'
 
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnipppets" ]
+" Fix for incorrect path on osx
+set shell=sh
+" some puppet files not getting highlighted correctly
+au BufRead *.pp set filetype=puppet
