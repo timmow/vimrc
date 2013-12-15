@@ -31,6 +31,7 @@ if v:version > '702'
     ActivateAddons fugitive
     ActivateAddons github:elzr/vim-json
     ActivateAddons vim-javascript
+    ActivateAddons eunuch
     if has("python")
       ActivateAddons UltiSnips
     endif
