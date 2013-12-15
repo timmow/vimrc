@@ -30,6 +30,7 @@ if v:version > '702'
     ActivateAddons github:kana/vim-vspec
     ActivateAddons fugitive
     ActivateAddons github:elzr/vim-json
+    ActivateAddons vim-javascript
     if has("python")
       ActivateAddons UltiSnips
     endif
@@ -285,9 +286,10 @@ let g:sparkupNextMapping='<c-}>'
 nmap ,r @='^f i -r 45261<C-V><ESC>j'<CR>
 nmap ,e /-d2f j^
 let g:syntastic_mode_map = { 'mode': 'active',
-                               \ 'active_filetypes': ['ruby', 'php', 'puppet'],
+                               \ 'active_filetypes': ['ruby', 'php', 'puppet', 'javascript'],
                                \ 'passive_filetypes': [] }
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_javscript_checkers = ['jshint']
 " close the current html tag
 imap ,/ </<C-X><C-O>
 " dont use the escape key
@@ -312,3 +314,12 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnipppets" ]
 set shell=sh
 " some puppet files not getting highlighted correctly
 au BufRead *.pp set filetype=puppet
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
