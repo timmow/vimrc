@@ -18,7 +18,6 @@ if v:version > '702'
     ActivateAddons sparkup
     ActivateAddons ack
     ActivateAddons ctrlp
-    ActivateAddons The_NERD_Commenter
     ActivateAddons github:rodjek/vim-puppet
     ActivateAddons rooter
     ActivateAddons surround
@@ -32,6 +31,9 @@ if v:version > '702'
     ActivateAddons github:elzr/vim-json
     ActivateAddons vim-javascript
     ActivateAddons eunuch
+    ActivateAddons unimpaired
+    ActivateAddons repeat
+    ActivateAddons commentary
     if has("python")
       ActivateAddons UltiSnips
     endif
@@ -295,7 +297,8 @@ let g:syntastic_javscript_checkers = ['jshint']
 imap ,/ </<C-X><C-O>
 " dont use the escape key
 inoremap <Esc> <Nop>
-inoremap jj <Esc>
+inoremap jk <Esc>
+inoremap jj <Nop>
 let mapleader=','
 nmap <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
 let g:syntastic_php_checkers=['php', 'phpcs']
