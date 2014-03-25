@@ -34,6 +34,10 @@ if v:version > '702'
     ActivateAddons unimpaired
     ActivateAddons repeat
     ActivateAddons commentary
+    ActivateAddons github:Trevoke/ultisnips-rspec
+    ActivateAddons github:avakhov/vim-yaml
+    ActivateAddons Python-mode-klen
+
     if has("python")
       ActivateAddons UltiSnips
     endif
@@ -113,9 +117,6 @@ set scrolloff=3
 " Round indent to multiple of 'shiftwidth' for > and < commands
 set shiftround
 
-" Use 4 spaces for (auto)indent
-set shiftwidth=2
-
 " Show (partial) commands (or size of selection in Visual mode) in the status line
 set showcmd
 
@@ -130,6 +131,7 @@ au FileType php setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
 " Set a max textwidth for markdown files
 au FileType markdown setlocal textwidth=80
+au FileType puppet setlocal commentstring=#%s
 
 " Write swap file to disk after every 50 characters
 set updatecount=50
@@ -229,7 +231,7 @@ set ff=unix
 set smartcase
 set ignorecase
 set smartindent
-set guifont=Source\ Code\ Pro:h12
+set guifont=Source\ Code\ Pro:h14
 set tags=tags,Z:\sf_tags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 set makeprg=\"c:\\Program\ Files\\phpDesigner\\PHP\\php.exe\"\ \-l\ %
@@ -327,3 +329,13 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
+
+let g:fugitive_github_domains = ['github.com', 'digital-github.bfb1.services.ipcdigital.co.uk']
+let g:vim_json_syntax_conceal = 0 
+
+" u is for word '*U*nder cursor'
+nnoremap cue :%s/\<<C-r><C-w>\>/<C-r><C-w>
+nnoremap cub :%s/\<<C-r><C-w>\>/<C-r><C-w><S-Left>
+nnoremap du :%s/\<<C-r><C-w>\>/
+
+let g:pymode_breakpoint_bind = '<Leader>u'
