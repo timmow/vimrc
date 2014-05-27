@@ -19,7 +19,7 @@ if v:version > '702'
     ActivateAddons ack
     ActivateAddons ctrlp
     ActivateAddons github:rodjek/vim-puppet
-    ActivateAddons rooter
+    ActivateAddons github:airblade/vim-rooter
     ActivateAddons surround
     ActivateAddons Solarized
     ActivateAddons EasyMotion
@@ -291,7 +291,7 @@ let g:sparkupNextMapping='<c-}>'
 nmap ,r @='^f i -r 45261<C-V><ESC>j'<CR>
 nmap ,e /-d2f j^
 let g:syntastic_mode_map = { 'mode': 'active',
-                               \ 'active_filetypes': ['ruby', 'php', 'puppet', 'javascript'],
+                               \ 'active_filetypes': ['ruby', 'php', 'puppet', 'javascript', 'python'],
                                \ 'passive_filetypes': [] }
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_javscript_checkers = ['jshint']
@@ -338,4 +338,10 @@ nnoremap cue :%s/\<<C-r><C-w>\>/<C-r><C-w>
 nnoremap cub :%s/\<<C-r><C-w>\>/<C-r><C-w><S-Left>
 nnoremap du :%s/\<<C-r><C-w>\>/
 
-let g:pymode_breakpoint_bind = '<Leader>u'
+let g:pymode_breakpoint_bind = '<Leader>s'
+
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
