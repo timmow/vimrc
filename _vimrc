@@ -184,8 +184,8 @@ map j gj
 map k gk
 " use CTRL-F for omni completion
 imap <C-F> 
-" map CTRL-L to piece-wise copying of the line above the current one
-imap <C-L> @@@<ESC>hhkywjl?@@@<CR>P/@@@<CR>3s
+" map CTRL-R to piece-wise copying of the line above the current one
+inoremap <C-R> @@@<Esc>hhkywjl?@@@<CR>P/@@@<CR>3s
 " map ,f to display all lines with keyword under cursor and ask which one to
 " jump to
 nmap ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
@@ -345,3 +345,6 @@ if exists('+colorcolumn')
 else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
+
+" force md files to be markdown, not modula
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
