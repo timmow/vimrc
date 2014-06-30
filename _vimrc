@@ -338,7 +338,10 @@ nnoremap cue :%s/\<<C-r><C-w>\>/<C-r><C-w>
 nnoremap cub :%s/\<<C-r><C-w>\>/<C-r><C-w><S-Left>
 nnoremap du :%s/\<<C-r><C-w>\>/
 
+" pymode settings
 let g:pymode_breakpoint_bind = '<Leader>s'
+" turn off the annoying .ropeproject creation
+let g:pymode_rope = 0
 
 if exists('+colorcolumn')
   set colorcolumn=80
