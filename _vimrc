@@ -351,3 +351,6 @@ endif
 
 " force md files to be markdown, not modula
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+" Diffs open in a vertical split by default
+set diffopt+=vertical
