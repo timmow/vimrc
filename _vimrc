@@ -37,6 +37,8 @@ if v:version > '702'
     ActivateAddons github:Trevoke/ultisnips-rspec
     ActivateAddons github:avakhov/vim-yaml
     ActivateAddons Python-mode-klen
+    ActivateAddons virtualenv
+    ActivateAddons Emmet
 
     if has("python")
       ActivateAddons UltiSnips
@@ -257,7 +259,7 @@ set foldcolumn=2
 "die var_dump a variable - prob a better way to get the variable
 nmap dvd viwyodie(var_dump());hhP
 set complete -=t,i
-set statusline=%<%F\ %y[%{&ff}]\ %m%r%w%a\ %=%l/%L,%c%V\ %P\ %#IncSearch#%{getcwd()}
+set statusline=%<%f\ %y[%{&ff}]\ %m%r%w%a\ %=%l/%L,%c%V\ %P\ %#IncSearch#%{getcwd()}
 
 nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
 set lcs=eol:$,trail:-
@@ -294,6 +296,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
                                \ 'active_filetypes': ['ruby', 'php', 'puppet', 'javascript', 'python'],
                                \ 'passive_filetypes': [] }
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_python_checkers = ['python', 'pep8', 'pylint']
 let g:syntastic_javscript_checkers = ['jshint']
 " close the current html tag
 imap ,/ </<C-X><C-O>
@@ -316,8 +319,6 @@ let g:syntastic_ruby_exec='~/.rbenv/shims/ruby'
 
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnipppets" ]
-" Fix for incorrect path on osx
-set shell=sh
 " some puppet files not getting highlighted correctly
 au BufRead *.pp set filetype=puppet
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
@@ -330,7 +331,7 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-let g:fugitive_github_domains = ['github.com', 'digital-github.bfb1.services.ipcdigital.co.uk']
+let g:fugitive_github_domains = ['github.com', 'github.gds']
 let g:vim_json_syntax_conceal = 0 
 
 " u is for word '*U*nder cursor'
@@ -340,8 +341,12 @@ nnoremap du :%s/\<<C-r><C-w>\>/
 
 " pymode settings
 let g:pymode_breakpoint_bind = '<Leader>s'
+" I'll ask when I want autocomplete
+let g:pymode_rope_complete_on_dot = 0
+" use syntastic instead - less obtrusive
+let g:pymode_lint = 0
 " turn off the annoying .ropeproject creation
-let g:pymode_rope = 0
+" let g:pymode_rope = 0
 
 if exists('+colorcolumn')
   set colorcolumn=80
@@ -354,3 +359,6 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Diffs open in a vertical split by default
 set diffopt+=vertical
+let g:virtualenv_directory='~/envs'
+" Show but dont focus the quickfix window when acking
+let g:ack_qhandler='botright cwindow'
