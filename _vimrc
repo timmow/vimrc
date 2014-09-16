@@ -362,3 +362,4 @@ set diffopt+=vertical
 let g:virtualenv_directory='~/envs'
 " Show but dont focus the quickfix window when acking
 let g:ack_qhandler='botright cwindow'
+set foldlevelstart=99
