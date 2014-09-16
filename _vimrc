@@ -296,7 +296,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
                                \ 'active_filetypes': ['ruby', 'php', 'puppet', 'javascript', 'python'],
                                \ 'passive_filetypes': [] }
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_python_checkers = ['python', 'pep8', 'pylint']
+let g:syntastic_python_checkers = ['python', 'pep8', 'py3kwarn']
 let g:syntastic_javscript_checkers = ['jshint']
 " close the current html tag
 imap ,/ </<C-X><C-O>
