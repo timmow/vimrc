@@ -39,7 +39,7 @@ if v:version > '702'
     ActivateAddons Python-mode-klen
     ActivateAddons virtualenv
     ActivateAddons Emmet
-
+    ActivateAddons Enhanced_Javascript_syntax
     if has("python")
       ActivateAddons UltiSnips
     endif
@@ -131,6 +131,7 @@ set t_RV=
 " Indent options for various files
 au FileType php setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
+au FileType javascript setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
 " Set a max textwidth for markdown files
 au FileType markdown setlocal textwidth=80
 au FileType puppet setlocal commentstring=#%s
