@@ -40,6 +40,7 @@ if v:version > '702'
     ActivateAddons virtualenv
     ActivateAddons Emmet
     ActivateAddons Enhanced_Javascript_syntax
+    ActivateAddons github:christoomey/vim-tmux-navigator
     if has("python")
       ActivateAddons UltiSnips
       ActivateAddons vim-snippets
