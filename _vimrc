@@ -136,6 +136,7 @@ au FileType javascript setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 a
 " Set a max textwidth for markdown files
 au FileType markdown setlocal textwidth=80
 au FileType puppet setlocal commentstring=#%s
+au FileType sml setlocal commentstring=(*%s*)
 
 " Write swap file to disk after every 50 characters
 set updatecount=50
