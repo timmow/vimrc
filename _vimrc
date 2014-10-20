@@ -42,6 +42,7 @@ if v:version > '702'
     ActivateAddons Enhanced_Javascript_syntax
     if has("python")
       ActivateAddons UltiSnips
+      ActivateAddons vim-snippets
     endif
   endfun
   let g:vim_addon_manager = {'scms': {'git': {}}}
