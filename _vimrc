@@ -41,6 +41,9 @@ if v:version > '702'
     ActivateAddons Emmet
     ActivateAddons Enhanced_Javascript_syntax
     ActivateAddons github:christoomey/vim-tmux-navigator
+    ActivateAddons github:cypok/vim-sml
+    ActivateAddons paredit
+    ActivateAddons vim-niji
     if has("python")
       ActivateAddons UltiSnips
       ActivateAddons vim-snippets
@@ -369,3 +372,13 @@ let g:ack_qhandler='botright cwindow'
 set foldlevelstart=99
 " spellcheck things that should be
 autocmd FileType gitcommit,rst,markdown setlocal spell
+let g:niji_dark_colours = [
+    \ [ '81', '#5fd7ff'],
+    \ [ '99', '#875fff'],
+    \ [ '1',  '#dc322f'],
+    \ [ '76', '#5fd700'],
+    \ [ '3',  '#b58900'],
+    \ [ '2',  '#859900'],
+    \ [ '6',  '#2aa198'],
+    \ [ '4',  '#268bd2'],
+    \ ]
