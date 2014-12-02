@@ -382,3 +382,5 @@ let g:niji_dark_colours = [
     \ [ '6',  '#2aa198'],
     \ [ '4',  '#268bd2'],
     \ ]
+" disable annoying sounds
+set visualbell
