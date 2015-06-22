@@ -44,6 +44,7 @@ if v:version > '702'
     ActivateAddons github:cypok/vim-sml
     ActivateAddons paredit
     ActivateAddons vim-niji
+    ActivateAddons github:Konfekt/FastFold
     if has("python")
       ActivateAddons UltiSnips
       ActivateAddons vim-snippets
