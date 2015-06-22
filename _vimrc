@@ -45,6 +45,7 @@ if v:version > '702'
     ActivateAddons paredit
     ActivateAddons vim-niji
     ActivateAddons github:Konfekt/FastFold
+    ActivateAddons Markdown_syntax
     if has("python")
       ActivateAddons UltiSnips
       ActivateAddons vim-snippets
