@@ -354,8 +354,6 @@ let g:pymode_breakpoint_bind = '<Leader>s'
 let g:pymode_rope_complete_on_dot = 0
 " use syntastic instead - less obtrusive
 let g:pymode_lint = 0
-" turn off the annoying .ropeproject creation
-" let g:pymode_rope = 0
 
 if exists('+colorcolumn')
   set colorcolumn=80
