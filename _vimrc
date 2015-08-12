@@ -3,6 +3,9 @@
 "
 set nocompatible | filetype indent plugin on | syn on
 
+" needs to be set before vam setup
+set nomore
+
 if v:version > '702' 
   fun! SetupVAM()
     let c = get(g:, 'vim_addon_manager', {})
@@ -14,7 +17,7 @@ if v:version > '702'
       execute '!git clone --depth=1 https://github.com/MarcWeber/vim-addon-manager '
 	    \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
     endif
-    call vam#ActivateAddons(['vim-ruby'], {'auto_install' : 0})
+    call vam#ActivateAddons(['vim-ruby'], {'auto_install' : 1, 'shell_commands_run_method': 'system'})
     ActivateAddons sparkup
     ActivateAddons ack
     ActivateAddons ctrlp
@@ -43,7 +46,7 @@ if v:version > '702'
     ActivateAddons github:christoomey/vim-tmux-navigator
     ActivateAddons github:cypok/vim-sml
     ActivateAddons paredit
-    ActivateAddons vim-niji
+    ActivateAddons github:losingkeys/vim-niji
     ActivateAddons github:Konfekt/FastFold
     ActivateAddons Markdown_syntax
     if has("python")
