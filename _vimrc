@@ -10,6 +10,7 @@ if v:version > '702'
   fun! SetupVAM()
     let c = get(g:, 'vim_addon_manager', {})
     let g:vim_addon_manager = c
+    let c.shell_commands_run_method='system'
     let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
     let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
     " let g:vim_addon_manager = { your config here see "commented version" example and help
