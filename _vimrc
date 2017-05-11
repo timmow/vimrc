@@ -50,6 +50,7 @@ if v:version > '702'
     ActivateAddons github:losingkeys/vim-niji
     ActivateAddons github:Konfekt/FastFold
     ActivateAddons Markdown_syntax
+    ActivateAddons vim-go
     if has("python")
       ActivateAddons UltiSnips
       ActivateAddons vim-snippets
@@ -147,6 +148,7 @@ au FileType javascript setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 a
 au FileType markdown setlocal textwidth=80
 au FileType puppet setlocal commentstring=#%s
 au FileType sml setlocal commentstring=(*%s*)
+au FileType go setlocal shiftwidth=2 tabstop=2 noexpandtab
 
 " Write swap file to disk after every 50 characters
 set updatecount=50
@@ -388,3 +390,6 @@ let g:niji_dark_colours = [
     \ ]
 " disable annoying sounds
 set visualbell
+
+" in go mode, import anything which is not imported on save
+let g:go_fmt_command = "goimports"
