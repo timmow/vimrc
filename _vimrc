@@ -393,3 +393,5 @@ set visualbell
 
 " in go mode, import anything which is not imported on save
 let g:go_fmt_command = "goimports"
+set mouse=a
+set ttymouse=xterm2
