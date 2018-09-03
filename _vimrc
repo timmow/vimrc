@@ -395,3 +395,8 @@ set visualbell
 let g:go_fmt_command = "goimports"
 set mouse=a
 set ttymouse=xterm2
+
+" use ag instead of ack if available
+if executable('ag')
+	  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
