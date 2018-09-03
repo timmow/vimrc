@@ -51,6 +51,7 @@ if v:version > '702'
     ActivateAddons github:Konfekt/FastFold
     ActivateAddons Markdown_syntax
     ActivateAddons vim-go
+    ActivateAddons sleuth
     if has("python")
       ActivateAddons UltiSnips
       ActivateAddons vim-snippets
