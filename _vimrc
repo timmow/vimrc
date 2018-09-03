@@ -401,3 +401,6 @@ set ttymouse=xterm2
 if executable('ag')
 	  let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
+
+" When editing a git commit, start from the top
+autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
