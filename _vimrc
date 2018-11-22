@@ -52,6 +52,7 @@ if v:version > '702'
     ActivateAddons Markdown_syntax
     ActivateAddons vim-go
     ActivateAddons sleuth
+    ActivateAddons github:tmux-plugins/vim-tmux-focus-events
     if has("python")
       ActivateAddons UltiSnips
       ActivateAddons vim-snippets
@@ -404,3 +405,8 @@ endif
 
 " When editing a git commit, start from the top
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+
+" autoread option works with vim-tmux-focus-events to autoreload files changed
+" outside of vim and prevent an annoying error message telling you the file
+" has changed
+set autoread
