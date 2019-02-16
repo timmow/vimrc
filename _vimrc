@@ -1,77 +1,47 @@
-"
-" MAIN CUSTOMIZATION FILE
-"
-set nocompatible | filetype indent plugin on | syn on
-
-" needs to be set before vam setup
-set nomore
-
-if v:version > '702' 
-  fun! SetupVAM()
-    let c = get(g:, 'vim_addon_manager', {})
-    let g:vim_addon_manager = c
-    let c.shell_commands_run_method='system'
-    let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
-    let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
-    " let g:vim_addon_manager = { your config here see "commented version" example and help
-    if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
-      execute '!git clone --depth=1 https://github.com/MarcWeber/vim-addon-manager '
-	    \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
-    endif
-    call vam#ActivateAddons(['vim-ruby'], {'auto_install' : 1, 'shell_commands_run_method': 'system'})
-    ActivateAddons sparkup
-    ActivateAddons ack
-    ActivateAddons ctrlp
-    ActivateAddons github:rodjek/vim-puppet
-    ActivateAddons github:airblade/vim-rooter
-    ActivateAddons surround
-    ActivateAddons Solarized
-    ActivateAddons EasyMotion
-    ActivateAddons gnupg%3645
-    ActivateAddons Syntastic
-    ActivateAddons Tabular
-    ActivateAddons github:kana/vim-vspec
-    ActivateAddons fugitive
-    ActivateAddons github:elzr/vim-json
-    ActivateAddons vim-javascript
-    ActivateAddons eunuch
-    ActivateAddons unimpaired
-    ActivateAddons repeat
-    ActivateAddons commentary
-    ActivateAddons github:Trevoke/ultisnips-rspec
-    ActivateAddons github:avakhov/vim-yaml
-    ActivateAddons Python-mode-klen
-    ActivateAddons virtualenv
-    ActivateAddons Emmet
-    ActivateAddons Enhanced_Javascript_syntax
-    ActivateAddons github:christoomey/vim-tmux-navigator
-    ActivateAddons github:cypok/vim-sml
-    ActivateAddons paredit
-    ActivateAddons github:losingkeys/vim-niji
-    ActivateAddons github:Konfekt/FastFold
-    ActivateAddons Markdown_syntax
-    ActivateAddons vim-go
-    ActivateAddons sleuth
-    ActivateAddons github:tmux-plugins/vim-tmux-focus-events
-    ActivateAddons vimtex
-    ActivateAddons vim-elixir
+call plug#begin('~/.vim/vim-addons')
+    Plug 'rstacruz/sparkup'
+    Plug 'mileszs/ack.vim'
+    Plug 'kien/ctrlp.vim'
+    Plug 'rodjek/vim-puppet'
+    Plug 'airblade/vim-rooter'
+    Plug 'tpope/vim-surround'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'jamessan/vim-gnupg'
+    Plug 'vim-syntastic/syntastic'
+    Plug 'godlygeek/tabular'
+    Plug 'kana/vim-vspec'
+    Plug 'tpope/vim-fugitive'
+    Plug 'elzr/vim-json'
+    Plug 'pangloss/vim-javascript'
+    Plug 'tpope/vim-eunuch'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-commentary'
+    Plug 'Trevoke/ultisnips-rspec'
+    Plug 'avakhov/vim-yaml'
+    Plug 'python-mode/python-mode'
+    Plug 'plytophogy/vim-virtualenv'
+    Plug 'mattn/emmet-vim'
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'cypok/vim-sml'
+    Plug 'vim-scripts/paredit.vim'
+    Plug 'losingkeys/vim-niji'
+    Plug 'Konfekt/FastFold'
+    Plug 'gabrielelana/vim-markdown'
+    Plug 'fatih/vim-go'
+    Plug 'tpope/vim-sleuth'
+    Plug 'tmux-plugins/vim-tmux-focus-events'
+    Plug 'lervag/vimtex'
+    Plug 'elixir-lang/vim-elixir'
     if has("python")
-      ActivateAddons UltiSnips
-      ActivateAddons vim-snippets
+      Plug 'SirVer/ultisnips'
+      Plug 'honza/vim-snippets'
     endif
-  endfun
-  let g:vim_addon_manager = {'scms': {'git': {}}}
-  fun! MyGitCheckout(repository, targetDir)
-    let a:repository.url = substitute(a:repository.url, '^git://github', 'https://github', '')
-    return vam#utils#RunShell('git clone --depth=1 $.url $p', a:repository, a:targetDir)
-  endfun
-  let g:vim_addon_manager.scms.git.clone=['MyGitCheckout']
-  call SetupVAM()
+call plug#end()
 
-  set runtimepath+=~/.vim/vim-addon-manager/
-  colorscheme solarized
-endif
-syntax enable
+
+colorscheme solarized
 
 
 set t_Co=256
