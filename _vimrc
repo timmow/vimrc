@@ -53,6 +53,8 @@ if v:version > '702'
     ActivateAddons vim-go
     ActivateAddons sleuth
     ActivateAddons github:tmux-plugins/vim-tmux-focus-events
+    ActivateAddons vimtex
+    ActivateAddons vim-elixir
     if has("python")
       ActivateAddons UltiSnips
       ActivateAddons vim-snippets
@@ -322,6 +324,7 @@ inoremap <Esc> <Nop>
 inoremap jk <Esc>
 inoremap jj <Nop>
 let mapleader=','
+let maplocalleader=','
 nmap <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
 let g:syntastic_php_checkers=['php', 'phpcs']
 let g:syntastic_php_phpcs_args='--report=csv --standard=PSR2'
@@ -410,3 +413,28 @@ autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 " outside of vim and prevent an annoying error message telling you the file
 " has changed
 set autoread
+let g:tex_flavor = 'latex'
+
+let g:vimtex_view_method = 'skim'
+
+let g:vimtex_view_general_viewer
+      \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+function! UpdateSkim(status)
+  if !a:status | return | endif
+
+  let l:out = b:vimtex.out()
+  let l:tex = expand('%:p')
+  let l:cmd = [g:vimtex_view_general_viewer, '-r']
+  if !empty(system('pgrep Skim'))
+    call extend(l:cmd, ['-g'])
+  endif
+  if has('nvim')
+    call jobstart(l:cmd + [line('.'), l:out, l:tex])
+  elseif has('job')
+    call job_start(l:cmd + [line('.'), l:out, l:tex])
+  else
+    call system(join(l:cmd + [line('.'),
+          \ shellescape(l:out), shellescape(l:tex)], ' '))
+  endif
+endfunction
