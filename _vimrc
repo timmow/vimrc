@@ -39,6 +39,10 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'tmux-plugins/vim-tmux-focus-events'
     Plug 'lervag/vimtex'
     Plug 'elixir-lang/vim-elixir'
+    Plug 'kchmck/vim-coffee-script'
+    Plug 'hashivim/vim-terraform'
+    Plug 'tmux-plugins/vim-tmux'
+    Plug 'drmingdrmer/vim-indent-lua'
     if has("python")
       Plug 'SirVer/ultisnips'
       Plug 'honza/vim-snippets'
