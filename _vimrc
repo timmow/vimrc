@@ -384,6 +384,7 @@ autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 " outside of vim and prevent an annoying error message telling you the file
 " has changed
 set autoread
+
 let g:tex_flavor = 'latex'
 
 let g:vimtex_view_method = 'skim'
@@ -409,3 +410,7 @@ function! UpdateSkim(status)
           \ shellescape(l:out), shellescape(l:tex)], ' '))
   endif
 endfunction
+
+" Keep all vim-related temp files in a single directory
+let $TMPDIR = '/tmp/vim-' . $USER
+silent! call mkdir($TMPDIR, '', 0700)
