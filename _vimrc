@@ -291,6 +291,7 @@ let g:syntastic_javscript_checkers = ['jshint']
 imap ,/ </<C-X><C-O>
 " dont use the escape key
 inoremap <Esc> <Nop>
+inoremap <esc>^[ <esc>^[
 inoremap jk <Esc>
 inoremap jj <Nop>
 let mapleader=','
