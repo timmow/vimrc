@@ -13,7 +13,6 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'altercation/vim-colors-solarized'
     Plug 'easymotion/vim-easymotion'
     Plug 'jamessan/vim-gnupg'
-    Plug 'vim-syntastic/syntastic'
     Plug 'godlygeek/tabular'
     Plug 'kana/vim-vspec'
     Plug 'tpope/vim-fugitive'
@@ -43,6 +42,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'hashivim/vim-terraform'
     Plug 'tmux-plugins/vim-tmux'
     Plug 'drmingdrmer/vim-indent-lua'
+    Plug 'w0rp/ale'
     if has("python")
       Plug 'SirVer/ultisnips'
       Plug 'honza/vim-snippets'
@@ -290,12 +290,6 @@ let g:sparkupNextMapping='<c-}>'
 "command -nargs=1 Eother exec 'edit '. '../' . substitute(expand('%:p'), getcwd(), <q-args>, '')
 nmap ,r @='^f i -r 45261<C-V><ESC>j'<CR>
 nmap ,e /-d2f j^
-let g:syntastic_mode_map = { 'mode': 'active',
-                               \ 'active_filetypes': ['ruby', 'php', 'puppet', 'javascript', 'python'],
-                               \ 'passive_filetypes': [] }
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_python_checkers = ['python', 'pep8', 'py3kwarn']
-let g:syntastic_javscript_checkers = ['jshint']
 " close the current html tag
 imap ,/ </<C-X><C-O>
 " dont use the escape key
@@ -306,8 +300,6 @@ inoremap jj <Nop>
 let mapleader=','
 let maplocalleader=','
 nmap <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
-let g:syntastic_php_checkers=['php', 'phpcs']
-let g:syntastic_php_phpcs_args='--report=csv --standard=PSR2'
 map \cd <Plug>RooterChangeToRootDirectory
 let g:rooter_patterns = ['.git/', '.git', 'puppet.conf', '.rooter']
 nmap <Leader>b :CtrlPBuffer<CR>
@@ -315,7 +307,6 @@ nmap <Leader>p :CtrlP<CR>
 let g:ctrlp_working_path_mode = 'a'
 nmap <Leader>s :write<CR>
 nmap <Leader>e :split ~/questions.txt<CR>ggOdts - 
-let g:syntastic_ruby_exec='~/.rbenv/shims/ruby'
 
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnipppets" ]
@@ -343,7 +334,7 @@ nnoremap du :%s/\<<C-r><C-w>\>/
 let g:pymode_breakpoint_bind = '<Leader>s'
 " I'll ask when I want autocomplete
 let g:pymode_rope_complete_on_dot = 0
-" use syntastic instead - less obtrusive
+" use ale instead - less obtrusive
 let g:pymode_lint = 0
 
 if exists('+colorcolumn')
