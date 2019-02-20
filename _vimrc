@@ -6,7 +6,7 @@ endif
 call plug#begin('~/.vim/vim-addons')
     Plug 'rstacruz/sparkup'
     Plug 'mileszs/ack.vim'
-    Plug 'kien/ctrlp.vim'
+    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'rodjek/vim-puppet'
     Plug 'airblade/vim-rooter'
     Plug 'tpope/vim-surround'
