@@ -127,6 +127,7 @@ set t_RV=
 
 " Indent options for various files
 au FileType php setlocal shiftwidth=4 tabstop=4 expandtab
+au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
 au FileType javascript setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
 " Set a max textwidth for markdown files
@@ -338,6 +339,7 @@ let g:pymode_breakpoint_bind = '<Leader>s'
 let g:pymode_rope_complete_on_dot = 0
 " use ale instead - less obtrusive
 let g:pymode_lint = 0
+:let g:pymode_rope = 0
 
 if exists('+colorcolumn')
   set colorcolumn=80
