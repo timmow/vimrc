@@ -383,6 +383,7 @@ endif
 
 " When editing a git commit, start from the top
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+autocmd FileType gitcommit setlocal nocindent
 
 " autoread option works with vim-tmux-focus-events to autoreload files changed
 " outside of vim and prevent an annoying error message telling you the file
