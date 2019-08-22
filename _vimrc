@@ -43,6 +43,8 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'tmux-plugins/vim-tmux'
     Plug 'drmingdrmer/vim-indent-lua'
     Plug 'w0rp/ale'
+    Plug 'wincent/terminus'
+    Plug 'airblade/vim-gitgutter'
     if has("python")
       Plug 'SirVer/ultisnips'
       Plug 'honza/vim-snippets'
@@ -414,3 +416,6 @@ endfunction
 " Keep all vim-related temp files in a single directory
 let $TMPDIR = '/tmp/vim-' . $USER
 silent! call mkdir($TMPDIR, '', 0700)
+
+" Update vim git gutter quicker
+set updatetime=100
