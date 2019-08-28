@@ -161,7 +161,9 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal 
 
 " Fix my <Backspace> key (in Mac OS X Terminal)
 set t_kb=
-fixdel
+if exists(':fixdel')
+  fixdel
+endif
 
 " Avoid loading MatchParen plugin
 let loaded_matchparen = 1
@@ -373,7 +375,9 @@ set visualbell
 " in go mode, import anything which is not imported on save
 let g:go_fmt_command = "goimports"
 set mouse=a
-set ttymouse=xterm2
+if exists(':ttymouse')
+  set ttymouse=xterm2
+endif
 
 " use ag instead of ack if available
 if executable('ag')
