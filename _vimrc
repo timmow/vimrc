@@ -146,7 +146,6 @@ set updatecount=50
 " :20  - remember 20 items in command-line history 
 " %    - remember the buffer list (if vim started without a file arg)
 " n    - set name of viminfo file
-set viminfo='20,\"50,:20,%20,n~/.viminfo
 
 " Use menu to show command-line completion (in 'full' case)
 set wildmenu
