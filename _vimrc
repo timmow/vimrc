@@ -267,7 +267,6 @@ nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
 set lcs=eol:$,trail:-
 vmap dv "zyodie(var_dump(<C-R>z));<CR><ESC>
 set hlsearch
-set hl+=l:IncSearch
 nmap <F8> :set hls!<bar>set hls?<CR>
 nmap `n :tabn<CR>
 nmap `p :tabp<CR>
