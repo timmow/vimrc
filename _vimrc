@@ -44,6 +44,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'w0rp/ale'
     Plug 'wincent/terminus'
     Plug 'airblade/vim-gitgutter'
+    Plug 'junegunn/vim-easy-align'
     if has("python")
       Plug 'SirVer/ultisnips'
       Plug 'honza/vim-snippets'
@@ -423,3 +424,10 @@ silent! call mkdir($TMPDIR, '', 0700)
 
 " Update vim git gutter quicker
 set updatetime=100
+let g:puppet_align_hashes = 0
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
