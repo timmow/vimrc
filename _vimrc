@@ -30,7 +30,6 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'cypok/vim-sml'
     Plug 'vim-scripts/paredit.vim'
-    Plug 'losingkeys/vim-niji'
     Plug 'Konfekt/FastFold'
     Plug 'gabrielelana/vim-markdown'
     Plug 'fatih/vim-go'
