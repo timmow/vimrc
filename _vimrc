@@ -135,6 +135,7 @@ au FileType markdown setlocal textwidth=80
 au FileType puppet setlocal commentstring=#%s
 au FileType sml setlocal commentstring=(*%s*)
 au FileType go setlocal shiftwidth=2 tabstop=2 noexpandtab
+au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab foldmethod=indent
 
 " Write swap file to disk after every 50 characters
 set updatecount=50
