@@ -22,7 +22,6 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-commentary'
-    Plug 'Trevoke/ultisnips-rspec'
     Plug 'avakhov/vim-yaml'
     Plug 'python-mode/python-mode'
     Plug 'plytophogy/vim-virtualenv'
@@ -47,6 +46,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'junegunn/vim-easy-align'
     if has("python")
       Plug 'SirVer/ultisnips'
+      Plug 'Trevoke/ultisnips-rspec'
       Plug 'honza/vim-snippets'
     endif
 call plug#end()
