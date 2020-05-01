@@ -10,7 +10,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'rodjek/vim-puppet'
     Plug 'airblade/vim-rooter'
     Plug 'tpope/vim-surround'
-    Plug 'altercation/vim-colors-solarized'
+    Plug 'lifepillar/vim-solarized8'
     Plug 'easymotion/vim-easymotion'
     Plug 'jamessan/vim-gnupg'
     Plug 'godlygeek/tabular'
@@ -51,14 +51,13 @@ call plug#begin('~/.vim/vim-addons')
     endif
 call plug#end()
 
-
-colorscheme solarized
-
-
-set t_Co=256
-let g:solarized_termcolors=256
-
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark
+
+colorscheme solarized8
+
 
 if has('win32')
 	cd z:\exemplar
