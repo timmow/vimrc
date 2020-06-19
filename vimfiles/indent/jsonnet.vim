@@ -1,0 +1,1 @@
+../vim-addons/vim-json/indent/json.vim
