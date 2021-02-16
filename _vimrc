@@ -45,6 +45,9 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'airblade/vim-gitgutter'
     Plug 'junegunn/vim-easy-align'
     Plug 'google/vim-jsonnet'
+    Plug 'tpope/vim-tbone'
+    Plug 'hjson/vim-hjson'
+    Plug 'ryvnf/readline.vim'
     if has("python")
       Plug 'SirVer/ultisnips'
       Plug 'Trevoke/ultisnips-rspec'
