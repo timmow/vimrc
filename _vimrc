@@ -22,7 +22,6 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-commentary'
-    Plug 'avakhov/vim-yaml'
     Plug 'python-mode/python-mode'
     Plug 'plytophogy/vim-virtualenv'
     Plug 'mattn/emmet-vim'
