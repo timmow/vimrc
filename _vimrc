@@ -236,7 +236,6 @@ nmap <F11> :let php_folding = 0<CR>:e<CR>
 set ff=unix
 set smartcase
 set ignorecase
-set cindent
 set guifont=Source\ Code\ Pro:h14
 set tags=tags,Z:\sf_tags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
