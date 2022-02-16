@@ -47,6 +47,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'tpope/vim-tbone'
     Plug 'hjson/vim-hjson'
     Plug 'ryvnf/readline.vim'
+    Plug 'dracula/vim', { 'as': 'dracula' }
     if has("python")
       Plug 'SirVer/ultisnips'
       Plug 'Trevoke/ultisnips-rspec'
@@ -59,7 +60,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark
 
-colorscheme solarized8
+colorscheme dracula
 
 
 if has('win32')
