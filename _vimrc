@@ -185,9 +185,7 @@ map ,s :w<CR>
 map ,q :q!<CR>
 " exit vim saving changes
 map ,w :x<CR>
-" switch to upper/lower window quickly
-map <C-J> <C-W>j
-map <C-K> <C-W>k
+
 map j gj
 map k gk
 " use CTRL-F for omni completion
