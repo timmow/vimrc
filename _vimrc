@@ -387,6 +387,8 @@ endif
 " When editing a git commit, start from the top
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 autocmd FileType gitcommit setlocal nocindent
+" for https://github.com/mhinz/neovim-remote allows me to still use wq
+autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 
 " autoread option works with vim-tmux-focus-events to autoreload files changed
 " outside of vim and prevent an annoying error message telling you the file
