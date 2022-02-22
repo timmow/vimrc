@@ -32,7 +32,6 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'gabrielelana/vim-markdown'
     Plug 'fatih/vim-go'
     Plug 'tpope/vim-sleuth'
-    Plug 'tmux-plugins/vim-tmux-focus-events'
     Plug 'lervag/vimtex'
     Plug 'elixir-lang/vim-elixir'
     Plug 'kchmck/vim-coffee-script'
