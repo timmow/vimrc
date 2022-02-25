@@ -62,11 +62,6 @@ set background=dark
 
 colorscheme dracula
 
-
-if has('win32')
-	cd z:\exemplar
-	au GUIEnter * simalt ~x
-endif
 " Enable loading filetype and indentation plugins
 filetype plugin on
 filetype indent on
@@ -129,7 +124,6 @@ set showmatch
 set t_RV=
 
 " Indent options for various files
-au FileType php setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
 au FileType javascript setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
@@ -179,24 +173,8 @@ let g:netrw_browse_split = 1
 " MAPPINGS
 "
 
-" save changes
-map ,s :w<CR>
-" exit vim without saving any changes
-map ,q :q!<CR>
-" exit vim saving changes
-map ,w :x<CR>
-
 map j gj
 map k gk
-" use CTRL-F for omni completion
-imap <C-F> 
-" map CTRL-R to piece-wise copying of the line above the current one
-inoremap <C-R> @@@<Esc>hhkywjl?@@@<CR>P/@@@<CR>3s
-" map ,f to display all lines with keyword under cursor and ask which one to
-" jump to
-nmap ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-" use <F6> to toggle line numbers
-nmap <silent> <C-l> :set number!<CR>
 " page down with <Space>
 nmap <Space> <PageDown>
 " open filename under cursor in a new window (use current file's working
@@ -210,72 +188,28 @@ vnoremap < <gv
 vnoremap > >gv 
 vnoremap . .gv 
 
-" Generic highlight changes
-"highlight Comment cterm=none ctermfg=Gray
-"highlight IncSearch cterm=none ctermfg=Black ctermbg=DarkYellow
-"highlight Search cterm=none ctermfg=Black ctermbg=DarkYellow
-"highlight String cterm=none ctermfg=DarkGreen
-"highlight treeDir cterm=none ctermfg=Cyan
-"highlight treeUp cterm=none ctermfg=DarkYellow
-"highlight treeCWD cterm=none ctermfg=DarkYellow
-"highlight netrwDir cterm=none ctermfg=Cyan
-
-
-
-"
-" NERDTree configuration
-"
-
-" Increase window size to 35 columns
-" let NERDTreeWinSize=35
-
-" map <F7> to toggle NERDTree window
-nmap <silent> <F7> :NERDTreeToggle Z:\exemplar<CR>
-nmap <F10> :let php_folding = 1<CR>:e<CR>
-nmap <F11> :let php_folding = 0<CR>:e<CR>
 set ff=unix
 set smartcase
 set ignorecase
 set guifont=Source\ Code\ Pro:h14
-set tags=tags,Z:\sf_tags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-set makeprg=\"c:\\Program\ Files\\phpDesigner\\PHP\\php.exe\"\ \-l\ %
-set errorformat=%m\ in\ %f\ on\ line\ %l
 
 " Turn off useless toolbar
 set guioptions-=T
-" Turn off menu bar (toggle with CTRL+F11)
+" Turn off menu bar
 set guioptions-=m
-" Turn off right-hand scroll-bar (toggle with CTRL+F7)
+" Turn off right-hand scroll-bar
 set guioptions-=r
-" CTRL+F11 to toggle the menu bar
-nmap <C-F11> :if &guioptions=~'m' \| set guioptions-=m \| else \| set guioptions+=m \| endif<cr>
-" CTRL+F7 to toggle the right-hand scroll bar
-nmap <C-F7> :if &guioptions=~'r' \| set guioptions-=r \| else \| set guioptions+=r \| endif<cr>
-" source ~/vimfiles/php-doc.vim
-" inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
 au BufRead *.yml set foldmethod=indent
 " Dialog box on closing and edited buffer
 set confirm
 set foldcolumn=2
-"nmap dvd odie(var_dump());hhi
-"die var_dump a variable - prob a better way to get the variable
-nmap dvd viwyodie(var_dump());hhP
 set complete -=t,i
 set statusline=%<%f\ %y[%{&ff}]\ %m%r%w%a\ %=%l/%L,%c%V\ %P\ %#IncSearch#%{getcwd()}
 
 nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
 set lcs=eol:$,trail:-
-vmap dv "zyodie(var_dump(<C-R>z));<CR><ESC>
 set hlsearch
 nmap <F8> :set hls!<bar>set hls?<CR>
-nmap `n :tabn<CR>
-nmap `p :tabp<CR>
-
-" Mappings for filename to clipboard. Filename is relative to current dir,
-" useful for switching to CLI. On a windows system, ctrl-u will replace the \
-" with / 
-nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
 
 " Dont clutter up system with swp files - double slash means same file names
 " under different path do not clash
@@ -287,15 +221,6 @@ if has("gui_macvim")
 	set fuopt+=maxhorz
 endif
 
-" sparkup mapping conflicts with vim completion in php
-let g:sparkupNextMapping='<c-}>'
-" Command will cd to the same file in a directory above the current.  Useful
-" for comparing release branch to trunk when in separate checkouts
-"command -nargs=1 Eother exec 'edit '. '../' . substitute(expand('%:p'), getcwd(), <q-args>, '')
-nmap ,r @='^f i -r 45261<C-V><ESC>j'<CR>
-nmap ,e /-d2f j^
-" close the current html tag
-imap ,/ </<C-X><C-O>
 " dont use the escape key
 inoremap <Esc> <Nop>
 inoremap <esc>^[ <esc>^[
@@ -316,7 +241,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnipppets" ]
 " some puppet files not getting highlighted correctly
 au BufRead *.pp set filetype=puppet
 
-let g:fugitive_github_domains = ['github.com', 'github.gds']
 let g:vim_json_syntax_conceal = 0 
 
 " u is for word '*U*nder cursor'
@@ -343,7 +267,6 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Diffs open in a vertical split by default
 set diffopt+=vertical
-let g:virtualenv_directory='~/envs'
 " Show but dont focus the quickfix window when acking
 let g:ack_qhandler='botright cwindow'
 set foldlevelstart=99
