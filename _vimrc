@@ -6,7 +6,8 @@ endif
 call plug#begin('~/.vim/vim-addons')
     Plug 'rstacruz/sparkup'
     Plug 'mileszs/ack.vim'
-    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
     Plug 'rodjek/vim-puppet'
     Plug 'airblade/vim-rooter'
     Plug 'tpope/vim-surround'
@@ -305,9 +306,8 @@ let maplocalleader=','
 nmap <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
 map \cd <Plug>RooterChangeToRootDirectory
 let g:rooter_patterns = ['.git/', '.git', 'puppet.conf', '.rooter']
-nmap <Leader>b :CtrlPBuffer<CR>
-nmap <Leader>p :CtrlP<CR>
-let g:ctrlp_working_path_mode = 'a'
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>p :Files<CR>
 nmap <Leader>s :write<CR>
 nmap <Leader>e :split ~/questions.txt<CR>ggOdts - 
 
@@ -315,15 +315,6 @@ nmap <Leader>e :split ~/questions.txt<CR>ggOdts -
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnipppets" ]
 " some puppet files not getting highlighted correctly
 au BufRead *.pp set filetype=puppet
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:ctrlp_use_caching = 0
-endif
 
 let g:fugitive_github_domains = ['github.com', 'github.gds']
 let g:vim_json_syntax_conceal = 0 
