@@ -11,7 +11,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'airblade/vim-rooter'
     Plug 'tpope/vim-surround'
     Plug 'lifepillar/vim-solarized8'
-    Plug 'easymotion/vim-easymotion'
+    Plug 'justinmk/vim-sneak'
     Plug 'jamessan/vim-gnupg'
     Plug 'godlygeek/tabular'
     Plug 'kana/vim-vspec'
@@ -452,3 +452,6 @@ function! SourceIfExists(file)
 endfunction
 " }
 call SourceIfExists("~/.vimrc.local")
+
+" vim-sneak
+let g:sneak#label = 1
