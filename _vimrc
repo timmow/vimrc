@@ -1,60 +1,60 @@
 set nocompatible
+
+function! Cond(cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.vim/vim-addons')
-    Plug 'rstacruz/sparkup'
-    Plug 'mileszs/ack.vim'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-    Plug 'rodjek/vim-puppet'
-    Plug 'airblade/vim-rooter'
-    Plug 'tpope/vim-surround'
-    Plug 'lifepillar/vim-solarized8'
-    Plug 'justinmk/vim-sneak'
-    Plug 'jamessan/vim-gnupg'
-    Plug 'godlygeek/tabular'
-    Plug 'kana/vim-vspec'
-    Plug 'tpope/vim-fugitive'
-    Plug 'elzr/vim-json'
-    Plug 'pangloss/vim-javascript'
-    Plug 'tpope/vim-eunuch'
-    Plug 'tpope/vim-unimpaired'
-    Plug 'tpope/vim-repeat'
-    Plug 'tpope/vim-rhubarb'
-    Plug 'tpope/vim-commentary'
-    Plug 'python-mode/python-mode'
-    Plug 'plytophogy/vim-virtualenv'
-    Plug 'mattn/emmet-vim'
-    Plug 'christoomey/vim-tmux-navigator'
-    Plug 'cypok/vim-sml'
-    Plug 'vim-scripts/paredit.vim'
-    Plug 'Konfekt/FastFold'
-    Plug 'tmhedberg/SimpylFold'
-    Plug 'gabrielelana/vim-markdown'
-    Plug 'fatih/vim-go'
-    Plug 'tpope/vim-sleuth'
-    Plug 'lervag/vimtex'
-    Plug 'elixir-lang/vim-elixir'
-    Plug 'kchmck/vim-coffee-script'
-    Plug 'hashivim/vim-terraform'
-    Plug 'tmux-plugins/vim-tmux'
-    Plug 'drmingdrmer/vim-indent-lua'
-    Plug 'w0rp/ale'
-    Plug 'wincent/terminus'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'junegunn/vim-easy-align'
-    Plug 'google/vim-jsonnet'
-    Plug 'tpope/vim-tbone'
-    Plug 'hjson/vim-hjson'
-    Plug 'ryvnf/readline.vim'
+    Plug 'mileszs/ack.vim',  Cond(!exists('g:vscode'))
+    Plug 'junegunn/fzf', Cond(!exists('g:vscode'), { 'do': { -> fzf#install() } })
+    Plug 'junegunn/fzf.vim',  Cond(!exists('g:vscode'))
+    Plug 'rodjek/vim-puppet',  Cond(!exists('g:vscode'))
+    Plug 'airblade/vim-rooter',  Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-surround',  Cond(!exists('g:vscode'))
+    Plug 'justinmk/vim-sneak',  Cond(!exists('g:vscode'))
+    Plug 'jamessan/vim-gnupg',  Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-fugitive',  Cond(!exists('g:vscode'))
+    Plug 'elzr/vim-json', Cond(!exists('g:vscode'))
+    Plug 'pangloss/vim-javascript',  Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-eunuch',  Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-unimpaired',  Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-repeat',  Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-rhubarb', Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-commentary',  Cond(!exists('g:vscode'))
+    Plug 'python-mode/python-mode',  Cond(!exists('g:vscode'))
+    Plug 'plytophogy/vim-virtualenv',  Cond(!exists('g:vscode'))
+    Plug 'mattn/emmet-vim',  Cond(!exists('g:vscode'))
+    Plug 'christoomey/vim-tmux-navigator', Cond(!exists('g:vscode'))
+    Plug 'cypok/vim-sml',  Cond(!exists('g:vscode'))
+    Plug 'vim-scripts/paredit.vim',  Cond(!exists('g:vscode'))
+    Plug 'Konfekt/FastFold', Cond(!exists('g:vscode'))
+    Plug 'tmhedberg/SimpylFold', Cond(!exists('g:vscode'))
+    Plug 'gabrielelana/vim-markdown', Cond(!exists('g:vscode'))
+    Plug 'fatih/vim-go',  Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-sleuth',  Cond(!exists('g:vscode'))
+    Plug 'lervag/vimtex',  Cond(!exists('g:vscode'))
+    Plug 'elixir-lang/vim-elixir',  Cond(!exists('g:vscode'))
+    Plug 'kchmck/vim-coffee-script',  Cond(!exists('g:vscode'))
+    Plug 'hashivim/vim-terraform', Cond(!exists('g:vscode'))
+    Plug 'tmux-plugins/vim-tmux',  Cond(!exists('g:vscode'))
+    Plug 'drmingdrmer/vim-indent-lua',  Cond(!exists('g:vscode'))
+    Plug 'w0rp/ale', Cond(!exists('g:vscode'))
+    Plug 'wincent/terminus', Cond(!exists('g:vscode'))
+    Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))
+    Plug 'junegunn/vim-easy-align',  Cond(!exists('g:vscode'))
+    Plug 'google/vim-jsonnet',  Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-tbone', Cond(!exists('g:vscode'))
+    Plug 'hjson/vim-hjson', Cond(!exists('g:vscode'))
+    Plug 'ryvnf/readline.vim', Cond(!exists('g:vscode'))
     Plug 'dracula/vim', { 'as': 'dracula' }
-    if has("python")
-      Plug 'SirVer/ultisnips'
-      Plug 'Trevoke/ultisnips-rspec'
-      Plug 'honza/vim-snippets'
-    endif
+    Plug 'SirVer/ultisnips', Cond(has('python') && !exists('g:vscode'))
+    Plug 'Trevoke/ultisnips-rspec', Cond(has('python') && !exists('g:vscode'))
+    Plug 'honza/vim-snippets', Cond(has('python') && !exists('g:vscode'))
 call plug#end()
 
 set termguicolors
@@ -206,7 +206,9 @@ au BufRead *.yml set foldmethod=indent
 set confirm
 set foldcolumn=2
 set complete -=t,i
-set statusline=%<%f\ %y[%{&ff}]\ %m%r%w%a\ %=%l/%L,%c%V\ %P\ %#IncSearch#%{getcwd()}
+if !exists("g:vscode")
+  set statusline=%<%f\ %y[%{&ff}]\ %m%r%w%a\ %=%l/%L,%c%V\ %P\ %#IncSearch#%{getcwd()}
+endif
 
 nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
 set lcs=eol:$,trail:-
@@ -224,15 +226,19 @@ if has("gui_macvim")
 endif
 
 " dont use the escape key
-inoremap <Esc> <Nop>
+if !exists("g:vscode")
+  inoremap <Esc> <Nop>
+endif
 inoremap <esc>^[ <esc>^[
 inoremap jk <Esc>
 inoremap jj <Nop>
 let mapleader=','
 let maplocalleader=','
 nmap <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
-map \cd <Plug>RooterChangeToRootDirectory
-let g:rooter_patterns = ['.git/', '.git', 'puppet.conf', '.rooter']
+if !exists('g:vscode')
+  map \cd <Plug>RooterChangeToRootDirectory
+  let g:rooter_patterns = ['.git/', '.git', 'puppet.conf', '.rooter']
+endif
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>p :Files<CR>
 nmap <Leader>s :write<CR>
