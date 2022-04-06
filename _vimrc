@@ -55,6 +55,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'SirVer/ultisnips', Cond(has('python') && !exists('g:vscode'))
     Plug 'Trevoke/ultisnips-rspec', Cond(has('python') && !exists('g:vscode'))
     Plug 'honza/vim-snippets', Cond(has('python') && !exists('g:vscode'))
+    Plug 'itchyny/lightline.vim', Cond(!exists('g:vscode'))
 call plug#end()
 
 set termguicolors
@@ -207,7 +208,12 @@ set confirm
 set foldcolumn=2
 set complete -=t,i
 if !exists("g:vscode")
-  set statusline=%<%f\ %y[%{&ff}]\ %m%r%w%a\ %=%l/%L,%c%V\ %P\ %#IncSearch#%{getcwd()}
+  set noshowmode
+  let g:lightline = {
+      \ 'colorscheme': 'dracula',
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+      \ }
 endif
 
 nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
@@ -377,3 +383,11 @@ call SourceIfExists("~/.vimrc.local")
 
 " vim-sneak
 let g:sneak#label = 1
+
+" lightline
+let g:lightline.active = {
+      \ 'left': [ [ 'mode', 'paste' ],
+      \           [ 'readonly', 'relativepath', 'modified' ] ],
+      \ 'right': [ [ 'lineinfo' ],
+      \            [ 'percent' ],
+      \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
