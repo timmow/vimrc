@@ -26,6 +26,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'tpope/vim-repeat',  Cond(!exists('g:vscode'))
     Plug 'tpope/vim-rhubarb', Cond(!exists('g:vscode'))
     Plug 'tpope/vim-commentary',  Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-sensible',  Cond(!exists('g:vscode'))
     Plug 'python-mode/python-mode',  Cond(!exists('g:vscode'))
     Plug 'plytophogy/vim-virtualenv',  Cond(!exists('g:vscode'))
     Plug 'mattn/emmet-vim',  Cond(!exists('g:vscode'))
@@ -65,11 +66,7 @@ set background=dark
 
 colorscheme dracula
 
-" Enable loading filetype and indentation plugins
-filetype plugin on
-filetype indent on
 
-" Turn syntax highlighting on
 
 "
 " GLOBAL SETTINGS
@@ -78,23 +75,8 @@ filetype indent on
 " Write contents of the file, if it has been modified, on buffer exit
 set autowrite
 
-" Allow backspacing over everything
-set backspace=indent,eol,start
-
 " Insert mode completion options
 set completeopt=menu,longest,preview
-
-" Use UTF-8 as the default buffer encoding
-set enc=utf-8
-
-" Remember up to 100 'colon' commmands and search patterns
-set history=100
-
-" Enable incremental search
-set incsearch
-
-" Always show status line, even for one window
-set laststatus=2
 
 " Jump to matching bracket for 2/10th of a second (works with showmatch)
 set matchtime=2
@@ -102,17 +84,8 @@ set matchtime=2
 " Don't highlight results of a search
 set nohlsearch
 
-" Enable CTRL-A/CTRL-X to work on octal and hex numbers, as well as characters
-set nrformats=octal,hex,alpha
-
 " Use F10 to toggle 'paste' mode
 set pastetoggle=<F10>
-
-" Show line, column number, and relative position within a file in the status line
-set ruler
-
-" Scroll when cursor gets within 3 characters of top/bottom edge
-set scrolloff=3
 
 " Round indent to multiple of 'shiftwidth' for > and < commands
 set shiftround
@@ -128,8 +101,8 @@ set t_RV=
 
 " Indent options for various files
 au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
-au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
-au FileType javascript setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2 autoindent
+au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
+au FileType javascript setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 " Set a max textwidth for markdown files
 au FileType markdown setlocal textwidth=80
 au FileType puppet setlocal commentstring=#%s
@@ -147,9 +120,6 @@ set updatecount=50
 " :20  - remember 20 items in command-line history 
 " %    - remember the buffer list (if vim started without a file arg)
 " n    - set name of viminfo file
-
-" Use menu to show command-line completion (in 'full' case)
-set wildmenu
 
 " Set command-line completion mode:
 "   - on first <Tab>, when more than one match, list all matches and complete
@@ -206,7 +176,6 @@ au BufRead *.yml set foldmethod=indent
 " Dialog box on closing and edited buffer
 set confirm
 set foldcolumn=2
-set complete -=t,i
 if !exists("g:vscode")
   set noshowmode
   let g:lightline = {
@@ -316,11 +285,6 @@ autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 autocmd FileType gitcommit setlocal nocindent
 " for https://github.com/mhinz/neovim-remote allows me to still use wq
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
-
-" autoread option works with vim-tmux-focus-events to autoreload files changed
-" outside of vim and prevent an annoying error message telling you the file
-" has changed
-set autoread
 
 let g:tex_flavor = 'latex'
 
