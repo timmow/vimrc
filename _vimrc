@@ -10,6 +10,28 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.vim/vim-addons')
+    " LSP Support
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
+
+
+    " Autocompletion
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-nvim-lua'
+
+    "  Snippets
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'rafamadriz/friendly-snippets'
+
+    Plug 'VonHeikemen/lsp-zero.nvim'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'folke/trouble.nvim'
+    Plug 'pedrohdz/vim-yaml-folds'
     Plug 'mileszs/ack.vim',  Cond(!exists('g:vscode'))
     Plug 'junegunn/fzf', Cond(!exists('g:vscode'), { 'do': { -> fzf#install() } })
     Plug 'junegunn/fzf.vim',  Cond(!exists('g:vscode'))
@@ -57,6 +79,8 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'Trevoke/ultisnips-rspec', Cond(has('python') && !exists('g:vscode'))
     Plug 'honza/vim-snippets', Cond(has('python') && !exists('g:vscode'))
     Plug 'itchyny/lightline.vim', Cond(!exists('g:vscode'))
+    Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
+    Plug 'direnv/direnv.vim', Cond(!exists('g:vscode'))
 call plug#end()
 
 set termguicolors
@@ -108,7 +132,7 @@ au FileType markdown setlocal textwidth=80
 au FileType puppet setlocal commentstring=#%s
 au FileType sml setlocal commentstring=(*%s*)
 au FileType go setlocal shiftwidth=2 tabstop=2 noexpandtab
-au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab foldmethod=indent
+au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Write swap file to disk after every 50 characters
 set updatecount=50
@@ -329,12 +353,13 @@ nmap ga <Plug>(EasyAlign)
 " keep buffers active when movign between them for undo history
 set hidden
 
-" vim-test bindings
+" vim-test 
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
+let test#strategy = "neovim"
 
 " Function to source only if file exists {
 function! SourceIfExists(file)
@@ -355,3 +380,55 @@ let g:lightline.active = {
       \ 'right': [ [ 'lineinfo' ],
       \            [ 'percent' ],
       \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
+lua <<EOF
+require('mason.settings').set({
+ pip = {
+        -- These args will be added to `pip install` calls. Note that setting extra args might impact intended behavior
+        -- and is not recommended.
+        --
+        -- Example: { "--proxy", "https://proxyserver" }
+        install_args = {"--index-url", "https://pypi.python.org/simple"},
+    },
+})
+
+local lsp = require('lsp-zero')
+lsp.set_preferences({
+  suggest_lsp_servers = true,
+  setup_servers_on_start = true,
+  set_lsp_keymaps = false,
+  configure_diagnostics = true,
+  cmp_capabilities = true,
+  manage_nvim_cmp = true,
+  call_servers = 'local',
+  sign_icons = {
+    error = '✘',
+    warn = '▲',
+    hint = '⚑',
+    info = ''
+  }
+})
+
+-- lsp.on_attach(function(client, bufnr)
+--   local noremap = {buffer = bufnr, remap = false}
+--   local bind = vim.keymap.set
+-- 
+--   -- hack - lsp and vim tmux navigator conflict so map this key again
+--   bind('n', '<c-k>', ':TmuxNavigateUp<cr>', noremap)
+-- end)
+lsp.setup()
+require("trouble").setup {
+  -- your configuration comes here
+  -- or leave it empty to use the default settings
+  -- refer to the configuration section below
+}
+
+EOF
+
+" Vim Script
+nnoremap <leader>xx <cmd>TroubleToggle<cr>
+nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
+nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
+nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
+nnoremap gR <cmd>TroubleToggle lsp_references<cr>
+"
