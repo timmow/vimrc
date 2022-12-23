@@ -15,23 +15,23 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
 
-
-    " Autocompletion
-    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
-    Plug 'saadparwaiz1/cmp_luasnip'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hrsh7th/cmp-nvim-lua'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
 
     "  Snippets
     Plug 'L3MON4D3/LuaSnip'
+    Plug 'saadparwaiz1/cmp_luasnip'
     Plug 'rafamadriz/friendly-snippets'
 
-    Plug 'VonHeikemen/lsp-zero.nvim'
+    " Plug 'VonHeikemen/lsp-zero.nvim'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'folke/trouble.nvim'
     Plug 'pedrohdz/vim-yaml-folds'
+
+    Plug 'onsails/lspkind.nvim'
     Plug 'mileszs/ack.vim',  Cond(!exists('g:vscode'))
     Plug 'junegunn/fzf', Cond(!exists('g:vscode'), { 'do': { -> fzf#install() } })
     Plug 'junegunn/fzf.vim',  Cond(!exists('g:vscode'))
@@ -100,7 +100,7 @@ colorscheme dracula
 set autowrite
 
 " Insert mode completion options
-set completeopt=menu,longest,preview
+set completeopt=menu,menuone
 
 " Jump to matching bracket for 2/10th of a second (works with showmatch)
 set matchtime=2
@@ -381,32 +381,32 @@ let g:lightline.active = {
       \            [ 'percent' ],
       \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
 lua <<EOF
-require('mason.settings').set({
- pip = {
-        -- These args will be added to `pip install` calls. Note that setting extra args might impact intended behavior
-        -- and is not recommended.
-        --
-        -- Example: { "--proxy", "https://proxyserver" }
-        install_args = {"--index-url", "https://pypi.python.org/simple"},
-    },
-})
+-- require('mason.settings').set({
+--  pip = {
+--         -- These args will be added to `pip install` calls. Note that setting extra args might impact intended behavior
+--         -- and is not recommended.
+--         --
+--         -- Example: { "--proxy", "https://proxyserver" }
+--         install_args = {"--index-url", "https://pypi.python.org/simple"},
+--     },
+-- })
 
-local lsp = require('lsp-zero')
-lsp.set_preferences({
-  suggest_lsp_servers = true,
-  setup_servers_on_start = true,
-  set_lsp_keymaps = false,
-  configure_diagnostics = true,
-  cmp_capabilities = true,
-  manage_nvim_cmp = true,
-  call_servers = 'local',
-  sign_icons = {
-    error = '✘',
-    warn = '▲',
-    hint = '⚑',
-    info = ''
-  }
-})
+-- local lsp = require('lsp-zero')
+-- lsp.set_preferences({
+--   suggest_lsp_servers = true,
+--   setup_servers_on_start = true,
+--   set_lsp_keymaps = false,
+--   configure_diagnostics = true,
+--   cmp_capabilities = true,
+--   manage_nvim_cmp = true,
+--   call_servers = 'local',
+--   sign_icons = {
+--     error = '✘',
+--     warn = '▲',
+--     hint = '⚑',
+--     info = ''
+--   }
+-- })
 
 -- lsp.on_attach(function(client, bufnr)
 --   local noremap = {buffer = bufnr, remap = false}
@@ -415,7 +415,110 @@ lsp.set_preferences({
 --   -- hack - lsp and vim tmux navigator conflict so map this key again
 --   bind('n', '<c-k>', ':TmuxNavigateUp<cr>', noremap)
 -- end)
-lsp.setup()
+-- lsp.setup()
+
+-- require'lspconfig'.pylsp.setup{}
+  -- Set up nvim-cmp.
+  local cmp = require'cmp'
+
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+  end
+
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        --vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<Tab>'] = function(fallback)
+        if not cmp.select_next_item() then
+          if cmp.visible() then
+            cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+          else
+            fallback()
+          end
+        end
+      end,
+    ['<S-Tab>'] = function(fallback)
+      if not cmp.select_prev_item() then
+        if vim.bo.buftype ~= 'prompt' and has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end
+    end,
+    }),
+    
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+  --    { name = 'vsnip' }, -- For vsnip users.
+      { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  require("mason").setup()
+  require("mason-lspconfig").setup()
+  -- Set up lspconfig.
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+
+  require('lspconfig').pyls.setup {
+    cmd = { 'pyls' },
+    filetypes = { 'python' },
+    root_dir = function(fname)
+      return vim.fn.getcwd()
+    end,
+  }
+  require('lspconfig')['jsonnet_ls'].setup {}
 require("trouble").setup {
   -- your configuration comes here
   -- or leave it empty to use the default settings
