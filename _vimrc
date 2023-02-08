@@ -501,7 +501,11 @@ lua <<EOF
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
-      { name = 'cmdline' }
+      { name = 'cmdline',
+        option = {
+          trailing_slash = true
+        },
+          },
     })
   })
 
@@ -511,6 +515,34 @@ lua <<EOF
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
+local lspconfig = require 'lspconfig'
+local configs = require 'lspconfig.configs'
+
+if not configs.pyls then
+configs.pyls = {
+
+  default_config = {
+    cmd = { 'pyls' },
+    filetypes = { 'python' },
+    root_dir = function(fname)
+      return vim.fn.getcwd()
+    end,
+  },
+  docs = {
+    package_json = 'https://raw.githubusercontent.com/palantir/python-language-server/develop/vscode-client/package.json',
+    description = [[
+https://github.com/palantir/python-language-server
+`python-language-server`, a language server for Python.
+The language server can be installed via `pipx install 'python-language-server[all]'`.
+    ]],
+    default_config = {
+      root_dir = "vim's starting directory",
+    },
+  },
+}
+end
+  lspconfig['pyls'].setup {}
+
   require('lspconfig').pyls.setup {
     cmd = { 'pyls' },
     filetypes = { 'python' },
@@ -518,7 +550,7 @@ lua <<EOF
       return vim.fn.getcwd()
     end,
   }
-  require('lspconfig')['jsonnet_ls'].setup {}
+require('lspconfig')['jsonnet_ls'].setup {}
 require("trouble").setup {
   -- your configuration comes here
   -- or leave it empty to use the default settings
