@@ -81,6 +81,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'itchyny/lightline.vim', Cond(!exists('g:vscode'))
     Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
     Plug 'direnv/direnv.vim', Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-dispatch', Cond(!exists('g:vscode'))
 call plug#end()
 
 set termguicolors
