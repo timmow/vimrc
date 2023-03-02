@@ -276,7 +276,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " Diffs open in a vertical split by default
 set diffopt+=vertical
 " Show but dont focus the quickfix window when acking
-let g:ack_qhandler='botright cwindow'
+let g:ack_qhandler='botright copen | wincmd p'
 set foldlevelstart=99
 " spellcheck things that should be
 autocmd FileType gitcommit,rst,markdown setlocal spell
