@@ -550,7 +550,14 @@ end
       return vim.fn.getcwd()
     end,
   }
-require('lspconfig')['jsonnet_ls'].setup {}
+require('lspconfig')['jsonnet_ls'].setup {
+  on_attach = on_attach,
+  cmd = {
+    'jsonnet-language-server',
+    '--tanka',
+    '--eval-diag',
+    }
+  }
 require("trouble").setup {
   -- your configuration comes here
   -- or leave it empty to use the default settings
