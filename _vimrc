@@ -85,6 +85,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
     Plug 'direnv/direnv.vim', Cond(!exists('g:vscode'))
     Plug 'tpope/vim-dispatch', Cond(!exists('g:vscode'))
+    Plug 'junegunn/rainbow_parentheses.vim', Cond(!exists('g:vscode'))
 call plug#end()
 
 set termguicolors
@@ -283,16 +284,6 @@ let g:ack_qhandler='botright copen | wincmd p'
 set foldlevelstart=99
 " spellcheck things that should be
 autocmd FileType gitcommit,rst,markdown setlocal spell
-let g:niji_dark_colours = [
-    \ [ '81', '#5fd7ff'],
-    \ [ '99', '#875fff'],
-    \ [ '1',  '#dc322f'],
-    \ [ '76', '#5fd700'],
-    \ [ '3',  '#b58900'],
-    \ [ '2',  '#859900'],
-    \ [ '6',  '#2aa198'],
-    \ [ '4',  '#268bd2'],
-    \ ]
 " disable annoying sounds
 set visualbell
 
@@ -385,6 +376,11 @@ let g:lightline.active = {
       \ 'right': [ [ 'lineinfo' ],
       \            [ 'percent' ],
       \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
+let g:sexp_filetypes = 'clojure,scheme,lisp,timl,racket'
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme,rkt RainbowParentheses
+augroup END
 lua <<EOF
 -- require('mason.settings').set({
 --  pip = {
