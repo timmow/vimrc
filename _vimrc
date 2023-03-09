@@ -78,8 +78,6 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'hjson/vim-hjson', Cond(!exists('g:vscode'))
     Plug 'ryvnf/readline.vim', Cond(!exists('g:vscode'))
     Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'SirVer/ultisnips', Cond(has('python') && !exists('g:vscode'))
-    Plug 'Trevoke/ultisnips-rspec', Cond(has('python') && !exists('g:vscode'))
     Plug 'honza/vim-snippets', Cond(has('python') && !exists('g:vscode'))
     Plug 'itchyny/lightline.vim', Cond(!exists('g:vscode'))
     Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
@@ -113,21 +111,11 @@ set matchtime=2
 " Don't highlight results of a search
 set nohlsearch
 
-" Use F10 to toggle 'paste' mode
-set pastetoggle=<F10>
-
-" Round indent to multiple of 'shiftwidth' for > and < commands
-set shiftround
-
-" Show (partial) commands (or size of selection in Visual mode) in the status line
-set showcmd
-
 " When a bracket is inserted, briefly jump to a matching one
 set showmatch
 
 " Don't request terminal version string (for xterm)
 set t_RV=
-
 " Indent options for various files
 au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType ruby setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
@@ -182,15 +170,11 @@ nmap <Space> <PageDown>
 " open filename under cursor in a new window (use current file's working
 " directory) 
 nmap gf :new %:p:h/<cfile><CR>
-" map <Alt-p> and <Alt-P> to paste below/above and reformat
-nnoremap <Esc>P  P'[v']=
-nnoremap <Esc>p  p'[v']=
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv 
 vnoremap . .gv 
 
-set ff=unix
 set smartcase
 set ignorecase
 set guifont=Source\ Code\ Pro:h14
@@ -204,7 +188,6 @@ set guioptions-=r
 au BufRead *.yml set foldmethod=indent
 " Dialog box on closing and edited buffer
 set confirm
-set foldcolumn=2
 if !exists("g:vscode")
   set noshowmode
   let g:lightline = {
@@ -214,10 +197,7 @@ if !exists("g:vscode")
       \ }
 endif
 
-nmap <silent> <C-c> :let  @* = expand('%:p')<CR>
 set lcs=eol:$,trail:-
-set hlsearch
-nmap <F8> :set hls!<bar>set hls?<CR>
 
 " Dont clutter up system with swp files - double slash means same file names
 " under different path do not clash
@@ -240,16 +220,12 @@ let mapleader=','
 let maplocalleader=','
 nmap <Leader>u :let  @* = expand('%:p:.:gs?\?/?')<CR>
 if !exists('g:vscode')
-  map \cd <Plug>RooterChangeToRootDirectory
   let g:rooter_patterns = ['.git/', '.git', 'puppet.conf', '.rooter']
 endif
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>p :Files<CR>
 nmap <Leader>s :write<CR>
-nmap <Leader>e :split ~/questions.txt<CR>ggOdts - 
 
-" Ultisnips
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnipppets" ]
 " some puppet files not getting highlighted correctly
 au BufRead *.pp set filetype=puppet
 
