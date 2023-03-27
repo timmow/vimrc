@@ -269,9 +269,11 @@ if exists(':ttymouse')
   set ttymouse=xterm2
 endif
 
-" use ag instead of ack if available
-if executable('ag')
-	  let g:ackprg = 'ag --nogroup --nocolor --column'
+" use ag/rg instead of ack if available
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep'
+elseif executable('ag')
+  let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
 
 " When editing a git commit, start from the top
