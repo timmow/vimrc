@@ -223,6 +223,7 @@ if !exists('g:vscode')
 endif
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>p :Files<CR>
+nmap <Leader>P :Files <C-R>=expand("%:p:h")<CR><CR>
 nmap <Leader>s :write<CR>
 
 " some puppet files not getting highlighted correctly
