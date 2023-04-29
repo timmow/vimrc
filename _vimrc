@@ -358,7 +358,7 @@ let g:lightline.active = {
 let g:sexp_filetypes = 'clojure,scheme,lisp,timl,racket'
 augroup rainbow_lisp
   autocmd!
-  autocmd FileType lisp,clojure,scheme,rkt RainbowParentheses
+  autocmd FileType lisp,clojure,scheme,racket RainbowParentheses
 augroup END
 lua <<EOF
 
