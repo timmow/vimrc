@@ -20,6 +20,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 
     "  Snippets
     Plug 'L3MON4D3/LuaSnip'
@@ -84,6 +85,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'tpope/vim-dispatch', Cond(!exists('g:vscode'))
     Plug 'junegunn/rainbow_parentheses.vim', Cond(!exists('g:vscode'))
     Plug 'preservim/vimux', Cond(!exists('g:vscode'))
+    Plug 'tpope/vim-abolish', Cond(!exists('g:vscode'))
 call plug#end()
 
 set termguicolors
@@ -371,3 +373,5 @@ nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 nnoremap gR <cmd>TroubleToggle lsp_references<cr>
+"
+let test#python#pytest#options = '--verbose --log-cli-level=debug -o log_cli=true'
