@@ -86,6 +86,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'junegunn/rainbow_parentheses.vim', Cond(!exists('g:vscode'))
     Plug 'preservim/vimux', Cond(!exists('g:vscode'))
     Plug 'tpope/vim-abolish', Cond(!exists('g:vscode'))
+    Plug 'Olical/conjure', Cond(!exists('g:vscode'))
 call plug#end()
 
 set termguicolors
