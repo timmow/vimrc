@@ -87,6 +87,7 @@ call plug#begin('~/.vim/vim-addons')
     Plug 'preservim/vimux', Cond(!exists('g:vscode'))
     Plug 'tpope/vim-abolish', Cond(!exists('g:vscode'))
     Plug 'Olical/conjure', Cond(!exists('g:vscode'))
+    Plug 'nvim-treesitter/nvim-treesitter', Cond(!exists('g:vscode'), {'do': ':TSUpdate'})
 call plug#end()
 
 set termguicolors
